@@ -7,6 +7,7 @@
 
     @media screen and (min-width: 1280px) {
         margin: -8px;
+        justify-content: flex-start;
     }
 }
 
@@ -18,24 +19,32 @@
     }
 
     &:last-child {
-        width: 336px;
         margin-bottom: 50px;
     }
 
     @media screen and(min-width: 768px) {
-        width: 395px;
-        margin: 8px;
+        width: 360px;
         margin-bottom: 30px;
 
         &:nth-last-child(-n + 2) {
             margin-bottom: 60px;
         }
     }
+
+    @media screen and (min-width: 1280px) {
+        width: 388px;
+        margin: 8px;
+    }
+}
+
+.film-link {
+
+    cursor: pointer;
 }
 
 .film_image {
+    min-height: 280px;
     margin-bottom: 10px;
-
     border-radius: 5px;
 }
 
@@ -53,6 +62,7 @@
 }
 
 .film_desc {
+    display: inline-block;
     font-weight: 500;
     line-height: 1.7;
     color: $accent-color;
@@ -64,11 +74,18 @@
 }
 
 .film_raiting {
+    display: inline-block;
     width: 36px;
     height: 16px;
     font-weight: 500;
+    text-align: center;
     color: $first-color;
     background: $accent-color;
     border-radius: 5px;
 
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 1.2;
+        height: 25px;
+    }
 }
