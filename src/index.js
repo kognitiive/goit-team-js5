@@ -14,7 +14,7 @@ async function getUser() {
     console.log(response)
     const card = response.data.results[1]
     console.log(card)
-    const { backdrop_path, title, release_date, vote_average, genre_ids } = card;
+    const { poster_path, title, release_date, vote_average, genre_ids } = card;
     let genre = []
     if (genre_ids.length <= 2) { genre = [...genre_ids] }
     else {
@@ -22,7 +22,7 @@ async function getUser() {
       genre.push('Other');
       genre.join(", ");
     }
-    return { backdrop_path, title, release_date, vote_average, genre }
+    return { poster_path, title, release_date, vote_average, genre }
   } catch (error) {
     console.error(error);
   }
