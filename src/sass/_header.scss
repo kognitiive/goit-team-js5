@@ -1,9 +1,77 @@
 .header {
-    background-color: black;
     height: 230px;
+    
     @media screen and (min-width: 768px) {
             height: 216px;
         }
+}
+
+.header__home {
+    background-image: url(../images/header/home/desk-bg@1x.webp);
+        background-size: cover;
+        background-color: black;
+    
+        @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+            background-image: linear-gradient(rgba(47, 48, 58, 0.4),
+                    rgba(47, 48, 58, 0.4)),
+                url(../images/header/home/desk-bg@2x.webp);
+        }
+    
+        @media screen and (max-width: 768px) {
+            background-image: url(../images/header/home/tab-bg@1x.webp);
+    
+            @media screen and (min-device-pixel-ratio: 2),
+            screen and (min-resolution: 192dpi),
+            screen and (min-resolution: 2dppx) {
+                background-image: url(../images/header/home/tab-bg@2x.webp);
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            background-image: url(../images/header/home/mob-bg@1x.webp);
+    
+            @media screen and (min-device-pixel-ratio: 2),
+            screen and (min-resolution: 192dpi),
+            screen and (min-resolution: 2dppx) {
+                background-image: url(../images/header/home/mob-bg@2x.webp);
+            }
+        }
+}
+
+.header__library {
+    background-image: url(../images/header/library/desk-bg@1x.webp);
+    background-size: cover;
+    background-color: black;
+
+    @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+        background-image: linear-gradient(rgba(47, 48, 58, 0.4),
+                rgba(47, 48, 58, 0.4)),
+            url(../images/header/library/desk-bg@2x.webp);
+    }
+
+    @media screen and (max-width: 768px) {
+        background-image: url(../images/header/library/tab-bg@1x.webp);
+
+        @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+            background-image: url(../images/header/library/tab-bg@2x.webp);
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        background-image: url(../images/header/library/mob-bg@1.webp);
+
+        @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+            background-image: url(../images/header/library/mob-bg@2x.webp);
+        }
+    }
 }
 
 .header__container {
@@ -15,12 +83,12 @@
 .logo__icon {
     display: inline-block;
     margin-right: 10px;
-
-    fill: #757575;
 }
 
 .nav__list {
+
     display: flex;
+    margin-left: auto;
 }
 
 .link {
@@ -33,7 +101,6 @@
 }
 
 .logo {
-    margin-right: auto;
     font-weight: 500;
     font-size: 30px;
     line-height: 35px;
@@ -41,6 +108,7 @@
             display: none;
         }
 }
+
 
 .library {
     margin-right: 0;
@@ -89,6 +157,7 @@
 }
 
 .input {
+    width: 100%;
     border: none;
     color: $first-color;
     background-color: inherit;
@@ -107,4 +176,21 @@
     right: 0;
     top: 0;
     margin-left: auto;
+}
+
+.bnt__box {
+display: flex;
+justify-content: center;
+margin-top: 62px;
+@media screen and (min-width: 768px) {
+        margin-top: 40px;
+    }
+}
+
+.btn__watched {
+    margin-right: 20px;
+
+    @media screen and (min-width: 768px) {
+            margin-right: 32px;
+        }
 }
