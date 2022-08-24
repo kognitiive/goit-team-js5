@@ -1,11 +1,12 @@
 <ul class="film_list list">
-    {{#each people}}
+    {{!-- {{#each people}} --}}
     <li class="film_item list">
-        <a class="link"><img src=https://image.tmdb.org/t/p/w500"{{backdrop_path}}" alt="{{title}}"
+        <a class="link"><img src=https://image.tmdb.org/t/p/w500{{backdrop_path}} alt="{{title}}"
                 class="film_image"></a>
         <h1 class="film_title">{{title}}</h1>
+        <p>{{genre}}</p>
         <p class="film_desc">|{{release_date}}</p>
         <p class="film_raiting">{{vote_average}}</p>
     </li>
-    {{/each}}
+    {{!-- {{/each}} --}}
 </ul>
