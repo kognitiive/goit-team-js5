@@ -1,9 +1,10 @@
-<ul class="film_list">
+<ul class="film_list list">
     {{#each people}}
-    <li class="film_item">
-        <a><img src="{{backdrop_path}}" alt="{{title}}" class="film_image"></a>
+    <li class="film_item list">
+        <a class="link"><img src="{{backdrop_path}}" alt="{{title}}" class="film_image"></a>
         <h1 class="film_title">{{title}}</h1>
-        <p class="film_desc">|{{release_date}}{{vote_average}}</p>
+        <p class="film_desc">|{{release_date}}</p>
+        <p class="film_raiting">{{vote_average}}</p>
     </li>
     {{/each}}
 </ul>

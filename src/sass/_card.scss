@@ -1,27 +1,74 @@
-.film_list {}
+.film_list {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin: -8px;
+    }
+}
 
 .film_item {
     min-width: 280px;
-    border-radius: 5px;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    &:last-child {
+        width: 336px;
+        margin-bottom: 50px;
+    }
+
+    @media screen and(min-width: 768px) {
+        width: 395px;
+        margin: 8px;
+        margin-bottom: 30px;
+
+        &:nth-last-child(-n + 2) {
+            margin-bottom: 60px;
+        }
+    }
 }
 
 .film_image {
-    height: auto;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
 }
 
 .film_title {
-    font-family: 'Roboto';
+    margin-bottom: 8px;
     font-weight: 500;
-    font-size: 12px;
     line-height: 1.7;
     text-transform: uppercase;
-    color: #000000;
+    color: $text-color;
+
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 1.2;
+    }
 }
 
 .film_desc {
-    font-family: 'Roboto';
     font-weight: 500;
-    font-size: 12px;
     line-height: 1.7;
-    color: #FF6B08;
+    color: $accent-color;
+
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+.film_raiting {
+    width: 36px;
+    height: 16px;
+    font-weight: 500;
+    color: $first-color;
+    background: $accent-color;
+    border-radius: 5px;
+
 }
