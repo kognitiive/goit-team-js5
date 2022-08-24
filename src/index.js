@@ -1,11 +1,11 @@
-import templateFunction from './templates/card.hbs';
+import templateFunction from './templates/example.hbs';
 const axios = require('axios').default;
 console.log(templateFunction({
-    people: [
-        "Yehuda Katz",
-        "Alan Johnson",
-        "Charles Jolley",
-    ],
+  people: [
+    "Yehuda Katz",
+    "Alan Johnson",
+    "Charles Jolley",
+  ],
 }));
 async function getUser() {
   try {

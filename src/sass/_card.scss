@@ -1,0 +1,27 @@
+.film_list {}
+
+.film_item {
+    min-width: 280px;
+    border-radius: 5px;
+}
+
+.film_image {
+    height: auto;
+}
+
+.film_title {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.7;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.film_desc {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #FF6B08;
+}
