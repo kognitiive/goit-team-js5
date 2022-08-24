@@ -1,0 +1,52 @@
+<div class='thumb'>
+
+  <img class='modal__image' src='{{curFilm.poster_path}}' alt='' />
+</div>
+<div class='content__text'>
+  {{#if curFilm.original_title}}
+    <h2 class='modal__title'>{{curFilm.original_title}}</h2>
+  {{/if}}
+  {{#if curFilm.name}}
+    <h2 class='modal__title'>{{curFilm.name}}</h2>
+  {{/if}}
+  <div class='wrap-modal'>
+    <ul class='modal__list modal__list--keys'>
+      <li>Vote / Votes</li>
+      <li>Popularity</li>
+      <li>Original Title</li>
+      <li>Genre</li>
+    </ul>
+    <ul class='modal__list modal__list--values'>
+      <li class='modal-list__item'>
+        <span class='modal__rating--orange'>{{curFilm.vote_average}}</span>
+        <span class='modal__rating--slash'> /</span>
+        <span class='modal__rating'>{{curFilm.vote_count}}</span>
+      </li>
+      <li>{{curFilm.popularity}}</li>
+      <li>{{#if curFilm.original_title}}
+          <p>{{curFilm.original_title}}</p>
+        {{/if}}
+        {{#if curFilm.name}}
+          <p>{{curFilm.name}}</p>
+        {{/if}}
+      </li>
+      <li>{{curFilm.genre_ids}}</li>
+    </ul>
+  </div>
+  <div class='modal-text'>
+    <h3 class='modal-text__title'>About</h3>
+    <p class='modal-text__item'>{{curFilm.overview}}</p>
+  </div>
+  <ul class='list-buttons'>
+    <li>
+      <button
+        type='submit'
+        class='button-modal button-modal--orange'
+        id='watchedInModal'
+      ></button>
+    </li>
+    <li>
+      <button type='submit' class='button-modal' id='queueInModal'>add to queue</button>
+    </li>
+  </ul>
+</div>
