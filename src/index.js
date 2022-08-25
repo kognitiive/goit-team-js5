@@ -22,14 +22,14 @@ async function getUser() {
     else {
       genre = [...genre_ids].slice(0, 2);
     }
+    newGenre = []
     for (item of arrayGanre) { 
       genre.map((genr) => {
-        if (genr === item.id) {
-          genr = item.name
-        console.log('1')}
-      })
+        if (genr === item.id) { newGenre.push(item.name) }
+      });
     }
-    return { poster_path, title, release_date, vote_average, genre }
+    newGenre = newGenre.join(', ')
+    return { poster_path, title, release_date, vote_average, newGenre }
   } catch (error) {
     console.error(error);
   }
