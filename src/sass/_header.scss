@@ -8,7 +8,8 @@
 
 .header__home {
     background-image: url(../images/header/home/desk-bg@1x.webp);
-        background-size: cover;
+        background-size:cover;
+        background-position-x: center;
         background-color: black;
     
         @media screen and (min-device-pixel-ratio: 2),
@@ -135,7 +136,7 @@
     background: #FF001B;
 }
 
-.input__box {
+.form {
     position: relative;
     display: block;
     margin-left: auto;
@@ -170,22 +171,29 @@
     color: $first-color;
 }
 
-.search__icon {
+.search__btn {
     content: '';
     position: absolute;
     right: 0;
     top: 0;
     margin-left: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover,
+        &:focus {
+            background-color: #ff001b;
+            border-radius: 2px;
+        }
 }
 
-.bnt__box {
-display: flex;
-justify-content: center;
-margin-top: 62px;
-@media screen and (min-width: 768px) {
-        margin-top: 40px;
-    }
-}
+// .search__btn:hover svg{
+//     fill: #FF001B;
+//     scale: 1.1;
+// }
+
+
 
 .btn__watched {
     margin-right: 20px;
