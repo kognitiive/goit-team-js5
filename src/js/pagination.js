@@ -1,14 +1,12 @@
 import Pagination from 'tui-pagination';
 import Notiflix from 'notiflix';
-import { onLoadMore } from '..//index';
-import { refs } from '..//index';
-import { backendRequest } from '..//js/backendRequest';
+Notiflix.Loading.init({ svgColor: $accent-color });
 
 export const paginat = {
   contain: document.querySelector('#tui-pagination-container'),
   options: {
-    totalItems: 1000,//вставити загальну кількіть отриманих фільмів
-    itemsPerPage: 20,//тут вставити кількіть фільмів на сторінці 
+    totalItems: '', // присвоїти значення з респонса
+    itemsPerPage: 20, //можливо зробити одну константу на всі запити
     visiblePages: 5,
     centerAlign: true,
     totalPages: '',
@@ -46,7 +44,9 @@ export const paginat = {
           template =
             '<a href="#" class=" tui-page-btn tui-last">' +
             '<span class="tui-ico-last">' +
-            paginat.options.totalItems / paginat.options.itemsPerPage +
+            Math.ceil(
+              paginat.options.totalItems / paginat.options.itemsPerPage
+            ) +
             '</span>' +
             '</a>';
         }
@@ -65,39 +65,44 @@ export const paginat = {
   },
   pagMake: function () {
     const pagination = new Pagination(this.contain, this.options);
+    if (this.options.totalItems <= this.options.itemsPerPage) {
+      //якщо всі елементи вміщаються на одній сторінці, то паг-ція не потрібна
+      this.contain.classList.add('is-hidden');
+      return;
+    }
+    hidefirstAndLastPages(1, this.options.totalPages);
+    Notiflix.Loading.dots('Loading...'); // нотіфлікси можна і в іншу функцію забрати
+    Notiflix.Loading.remove(350);
     pagination.on('afterMove', event => {
-      // if (backendRequest.totalItems <= 20) {
-      //   this.contain.classList.add('is-hidden');
-      //   return;
-      // }
-      this.options.totalItems = backendRequest.totalItems;
-      this.options.totalPages = Math.ceil(
-        this.options.totalItems / this.options.itemsPerPage
-      );
-      // console.log('totP:',this.options.totalItems, this.options.totalPages);
-      // console.log('itemsPerPage1:', this.options.itemsPerPage);
       Notiflix.Loading.dots('Loading...');
-      backendRequest.pageNumber = event.page;
+      backendRequest.pageNumber = event.page; // передаємо значення вибраної сторінки в fetch-функцію
+      onLoadMore();
       Notiflix.Loading.remove(350);
-      onLoadMore();//функція, яка рендерить сторінку
-      hidefirstAndLastPages(backendRequest.pageNumber, this.options.totalPages);
+      hidefirstAndLastPages(event.page, this.options.totalPages);
     });
   },
-};
-paginat.pagMake();
 
+  pagUnsubscribe: function () {
+    pagination.off('afterMove', pagMake);
+  },
+  // або ця, здається працюють обидві, хоча pagination.off не знайшов в документації
+  pagReset: function () {
+    pagination.reset(pagMake);
+  },
+};
+// paginat.pagMake();
+
+// керує видимістю крайніх елементів, усуває їх задвоєння
 function hidefirstAndLastPages(page, totalPage) {
   document.querySelector('.tui-first').classList.remove('is-hidden');
   document.querySelector('.tui-last').classList.remove('is-hidden');
   if (page < 4) {
-    // console.log('page:', page);
     document.querySelector('.tui-first').classList.add('is-hidden');
   }
   if (page > totalPage - 3) {
     document.querySelector('.tui-last').classList.add('is-hidden');
   }
   if (totalPage < 6) {
-    // console.log('totalPage:', page, '/', totalPage);
     document.querySelector('.tui-first').classList.add('is-hidden');
     document.querySelector('.tui-last').classList.add('is-hidden');
   }
