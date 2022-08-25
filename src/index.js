@@ -1,6 +1,8 @@
 import templateFunction from './templates/card.hbs';
 const axios = require('axios').default;
-const wraper = document.querySelector('.div')
+const wraper = document.querySelector('.div');
+import arrayGanre from './js/getGenre';
+console.log(arrayGanre);
 // console.log(templateFunction({
 //   people: [
 //     "Yehuda Katz",
@@ -19,8 +21,13 @@ async function getUser() {
     if (genre_ids.length <= 2) { genre = [...genre_ids] }
     else {
       genre = [...genre_ids].slice(0, 2);
-      genre.push('Other');
-      genre.join(", ");
+    }
+    for (item of arrayGanre) { 
+      genre.map((genr) => {
+        if (genr === item.id) {
+          genr = item.name
+        console.log('1')}
+      })
     }
     return { poster_path, title, release_date, vote_average, genre }
   } catch (error) {
