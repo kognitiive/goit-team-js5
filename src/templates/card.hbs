@@ -1,0 +1,12 @@
+<ul class="film_list list">
+    {{!-- {{#each people}} --}}
+    <li class="film_item list">
+        <a class="film-link link" href="/"><img src=https://image.tmdb.org/t/p/w500{{poster_path}} alt="{{title}}"
+                class="film_image"></a>
+        <h1 class="film_title">{{title}}</h1>
+        <p>{{genre}}</p>
+        <p class="film_desc">|{{release_date}}</p>
+        <p class="film_raiting">{{vote_average}}</p>
+    </li>
+    {{!-- {{/each}} --}}
+</ul>
