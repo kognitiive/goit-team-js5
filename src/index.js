@@ -19,7 +19,7 @@ import {arrayGanre} from './js/getGenre';
      console.log(result);
      const render = result.map((item) => 
                                { const data = getUser(item);
-                                templateFunction(data)
+                                return templateFunction(data)
                                }).join('');
      wraper.insertAdjacentHTML('beforeend', render);
    });
