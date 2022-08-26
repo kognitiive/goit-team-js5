@@ -12,7 +12,7 @@ export function fetchGenres(array) {
         });
     }
     if (newGenre.length <= 2){newGenre.push('Other')};
-    newGenre.join(', ');
+    return newGenre.join(', ');
 }
 
 
