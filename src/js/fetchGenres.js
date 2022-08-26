@@ -11,7 +11,7 @@ export function fetchGenres(array) {
             if (genr === item.id) { newGenre.push(item.name) }
         });
     }
-    if (newGenre.length <= 2){newGenre.push('Other')};
+    if (newGenre.length > 2){newGenre.push('Other')};
     return newGenre.join(', ');
 }
 
