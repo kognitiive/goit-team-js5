@@ -1,5 +1,5 @@
 import templateFunction from './templates/card.hbs';
-import {fetchGenres} from './js/fetchGenres';
+import { fetchGenres } from './js/fetchGenres';
 const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
@@ -18,7 +18,8 @@ let currentPage = 1;
 async function renderFilms() {
   const films = await fetchFilms(currentPage);
   try {
-    const render = films.map(item => {return getUser(item) });
+    const render = films.map(item => { return getUser(item) });
+    console.log(render)
     const markup = templateFunction({
       cards: [
         ...render
@@ -41,7 +42,8 @@ function getUser(item) {
   //     const card = response.data.results[1]
   //     // console.log(card)
   const { poster_path, title, release_date, vote_average, genre_ids } = item;
+  let raiting = vote_average.toFixed(1)
   let year = release_date.slice(0, 4);
   let newGenre = fetchGenres(genre_ids);
-  return { poster_path, title, year, vote_average, newGenre }
+  return { poster_path, title, year, raiting, newGenre }
 }
