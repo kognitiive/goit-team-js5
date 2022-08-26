@@ -11,12 +11,12 @@ import fetchFilms from './js/fetchFilms';
 //   ],
 // }));
 
-const films = fetchFilms()
-  .then(result => {
-    console.log(result);
-    const render = result.map(item => templateFunction(item)).join('');
-    wraper.insertAdjacentHTML('beforeend', render);
-  });
+ const films = fetchFilms()
+   .then(result => {
+     console.log(result);
+     const render = result.map(item => templateFunction(item)).join('');
+     wraper.insertAdjacentHTML('beforeend', render);
+   });
 
   async function getUser() {
     try {
