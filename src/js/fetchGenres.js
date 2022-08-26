@@ -1,3 +1,4 @@
+import arrayGanre from 'getGenre.js'
 export default function fetchGenres(array) {
     let genre = []
     if (array.length <= 2) { genre = [...array] }
@@ -10,7 +11,8 @@ export default function fetchGenres(array) {
             if (genr === item.id) { newGenre.push(item.name) }
         });
     }
-    newGenre = newGenre.join(', ')
+    if (newGenre.length <= 2){newGenre = newGenre.push('Other')};
+    newGenre = newGenre.join(', ');
 }
 
 
