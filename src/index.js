@@ -18,7 +18,7 @@ async function getUser() {
     const card = response.data.results[1]
     console.log(card)
     const { poster_path, title, release_date, vote_average, genre_ids } = card;
-    fetchGenres(genre_ids)
+    let newGenre = fetchGenres(genre_ids);
     return { poster_path, title, release_date, vote_average, newGenre }
   } catch (error) {
     console.error(error);
