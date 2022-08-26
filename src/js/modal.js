@@ -1,72 +1,37 @@
-!function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
-// import modal from './templates/modal.hbs';
+(function () {
+  'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
-  /* Записываем в переменные массив элементов-кнопок и подложку.
-      Подложке зададим id, чтобы не влиять на другие элементы с классом overlay*/
-  var modalButtons = document.querySelectorAll('.js-open-modal'),
-    overlay = document.querySelector('.js-overlay-modal'),
-    closeButtons = document.querySelectorAll('.js-modal-close');
+  const backdrop = document.querySelector('#modal-backdrop');
+  document.addEventListener('click', modalHandler);
 
-  /* Перебираем массив кнопок */
-  modalButtons.forEach(function (item) {
-    /* Назначаем каждой кнопке обработчик клика */
-    item.addEventListener('click', function (e) {
-      /* Предотвращаем стандартное действие элемента. Так как кнопку разные
-            люди могут сделать по-разному. Кто-то сделает ссылку, кто-то кнопку.
-            Нужно подстраховаться. */
-      e.preventDefault();
+  function modalHandler(evt) {
+    const modalBtnOpen = evt.target.closest('.js-modal');
+    if (modalBtnOpen) {
+      // open btn click
+      const modalSelector = modalBtnOpen.dataset.modal;
+      showModal(document.querySelector(modalSelector));
+    }
 
-      /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
-            и будем искать модальное окно с таким же атрибутом. */
-      var modalId = this.getAttribute('data-modal'),
-        modalElem = document.querySelector(
-          '.modal[data-modal="' + modalId + '"]'
-        );
+    const modalBtnClose = evt.target.closest('.modal-close');
+    if (modalBtnClose) {
+      // close btn click
+      evt.preventDefault();
+      hideModal(modalBtnClose.closest('.modal-window'));
+    }
 
-      /* После того как нашли нужное модальное окно, добавим классы
-            подложке и окну чтобы показать их. */
-      modalElem.classList.add('active');
-      overlay.classList.add('active');
-      const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+    if (evt.target.matches('#modal-backdrop')) {
+      // backdrop click
+      hideModal(document.querySelector('.modal-window.show'));
+    }
+  }
 
-      this.setAttribute('aria-expanded', !expanded);
-    }); // end click
-  }); // end foreach
+  function showModal(modalElem) {
+    modalElem.classList.add('show');
+    backdrop.classList.remove('hidden');
+  }
 
-  closeButtons.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      var parentModal = this.closest('.modal');
-
-      parentModal.classList.remove('active');
-      overlay.classList.remove('active');
-      document
-        .querySelectorAll('.js-open-modal')
-        .setAttribute('aria-expanded', false);
-    });
-  }); // end foreach
-
-  document.body.addEventListener(
-    'keyup',
-    function (e) {
-      var key = e.keyCode;
-
-      if (key == 27) {
-        document.querySelector('.modal.active').classList.remove('active');
-        document.querySelector('.overlay').classList.remove('active');
-        document
-          .querySelectorAll('.js-open-modal')
-          .setAttribute('aria-expanded', false);
-      }
-    },
-    false
-  );
-
-  overlay.addEventListener('click', function () {
-    document.querySelector('.modal.active').classList.remove('active');
-    this.classList.remove('active');
-    document
-      .querySelectorAll('.js-open-modal')
-      .setAttribute('aria-expanded', false);
-  });
-}); // end ready
+  function hideModal(modalElem) {
+    modalElem.classList.remove('show');
+    backdrop.classList.add('hidden');
+  }
+})();

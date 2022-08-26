@@ -1,206 +1,184 @@
-.overlay {
+.wrap-center-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap column;
+  text-align: center;
+  height: 50px;
+}
 
-    opacity: 0;
-    visibility: hidden;
+.modal-window {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%) scale(0.9);
+  width: 520px;
+  max-width: 95%;
+  min-height: 200px;
+  box-shadow: 0 10px 30px rgba(#000, 0.2);
+  background-color: #fff;
+  border-radius: 4px;
+  transition: all 0.18s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
 
+  &.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100%;
+    min-height: inherit;
+  }
+
+  &__backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 20;
-    transition: .3s all;
+    background-color: rgba(#000, 0.6);
+  }
 }
 
-
-.modal {
-
-    opacity: 0;
-    visibility: hidden;
-
-    width: 100%;
-    height: 100vh;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 30;
-
-    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
-    padding: 30px;
-    border-radius: 3px;
-    background-color: rgba(17, 21, 24, 0.9);
-    transition: 0.3s all;
+.hidden {
+  display: none;
 }
 
-
-
-.modal.active,
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-
-.modal__cross {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    fill: #444;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-}
-
-
-
-
-.modal-link {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-}
-
-@media screen and (max-width: 767px) {
-    .modal {
-        text-align: start;
-    }
-}
 // Зображення-------------------
 .thumb {
-    width: 240px;
-    height: 356px;
-    border-radius: 5px;
-    overflow: hidden;
-  
-    @media screen and(min-width: 768px) {
-      width: 264px;
-      height: 373px;
-    }
-    @media screen and(min-width: 1280px){
-      width: 396px;
-      height: 477px;
-    }
+  width: 240px;
+  height: 356px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  @media screen and(min-width: 768px) {
+    width: 264px;
+    height: 373px;
   }
-  
-  .modal__image {
-    width: 100%;
-    height: auto;
+  @media screen and(min-width: 1280px) {
+    width: 396px;
+    height: 477px;
   }
-  
+}
+
+.modal__image {
+  width: 100%;
+  height: auto;
+}
+
 // текстова частина -----------
 .wrap-modal {
-    display: flex;
-  
-    & ul:not(:last-child) {
-      margin-right: 80px;
-  
-      @media screen and(min-width: 320px) {
-        margin-right: 20px; 
-      }
-  
-      @media screen and(min-width: 768px) {
-        margin-right: 40px; 
-      }
-  
-      @media screen and(min-width: 1280px) {
-        margin-right: 80px;
-      }
+  display: flex;
+
+  & ul:not(:last-child) {
+    margin-right: 80px;
+
+    @media screen and(min-width: 320px) {
+      margin-right: 20px;
     }
-  
-  
-  }
-  
-  .content__text {
-    margin-top: 30px;
-    width: 240px;
-  
+
     @media screen and(min-width: 768px) {
-      margin-left: 30px;
-      margin-top: 0px;
-      width: 264px;
+      margin-right: 40px;
     }
-  
+
     @media screen and(min-width: 1280px) {
-      width: 396px;
+      margin-right: 80px;
     }
   }
-  
-  .modal__list {
-    margin-bottom: 20px;
-    font-size: 12px;
-    line-height: 1.33;
-    color: #8c8c8c;
-  
-    &--keys {
-      width: 70px;
-    }
-  
-    & li:not(:last-child) {
-      margin-bottom: 10px;
-    }
+}
+
+.content__text {
+  margin-top: 30px;
+  width: 240px;
+
+  @media screen and(min-width: 768px) {
+    margin-left: 30px;
+    margin-top: 0px;
+    width: 264px;
   }
-  
-  .modal__list--values {
-    color: inherit;
-  
-    & li:nth-child(-n + 2) {
-      line-height: 1.16;
-    }
+
+  @media screen and(min-width: 1280px) {
+    width: 396px;
   }
-  
-  .modal-list__item {
+}
+
+.modal__list {
+  margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8c8c8c;
+
+  &--keys {
+    width: 70px;
+  }
+
+  & li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.modal__list--values {
+  color: inherit;
+
+  & li:nth-child(-n + 2) {
+    line-height: 1.16;
+  }
+}
+
+.modal-list__item {
+  display: flex;
+
+  & span {
     display: flex;
-  
-    & span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    align-items: center;
+    justify-content: center;
   }
-  
-  .modal__rating {
+}
+
+.modal__rating {
+  line-height: 1.16;
+  height: 16px;
+  width: 36px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  color: #000000;
+
+  &--orange {
+    color: #ffffff;
     line-height: 1.16;
     height: 16px;
     width: 36px;
-    background-color: #f7f7f7;
+    background-color: #ff6b01;
     border-radius: 5px;
-    color: #000000;
-  
-    &--orange {
-      color: #ffffff;
-      line-height: 1.16;
-      height: 16px;
-      width: 36px;
-      background-color: #ff6b01;
-      border-radius: 5px;
-    }
-  
-    &--slash {
-      line-height: 1.16;
-      height: 16px;
-      padding-left: 3px;
-      padding-right: 3px;
-    }
   }
-  
-  .modal-text__title {
-    margin-bottom: 10px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.33;
-    text-transform: uppercase;
+
+  &--slash {
+    line-height: 1.16;
+    height: 16px;
+    padding-left: 3px;
+    padding-right: 3px;
   }
-  
-  .modal-text__item {
-    margin-bottom: 21px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.67;
-  }
+}
+
+.modal-text__title {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.modal-text__item {
+  margin-bottom: 21px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+}
