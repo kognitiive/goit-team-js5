@@ -18,14 +18,13 @@ import {arrayGanre} from './js/getGenre';
    .then(result => {
      console.log(result);
      const render = result.map((item) => 
-                               { const data = await getUser(item)
+                               { const data = getUser(item);
                                 templateFunction(data)
                                }).join('');
      wraper.insertAdjacentHTML('beforeend', render);
    });
 
-async function getUser(item) {
-try {
+function getUser(item) {
 //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
 //    // console.log(response)
 //     const card = response.data.results[1]
@@ -33,10 +32,7 @@ try {
 const { poster_path, title, release_date, vote_average, genre_ids } = item;
   let newGenre = fetchGenres(genre_ids);
   return { poster_path, title, release_date, vote_average, newGenre }
-  }
-  catch (error) {
-      console.error(error);
-  }
+}
 
 
  // async function makeMarkup() {
