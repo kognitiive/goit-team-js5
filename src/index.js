@@ -22,45 +22,32 @@ console.log(arrayGanre);
      wraper.insertAdjacentHTML('beforeend', render);
    });
 
-  async function getUser() {
-    try {
-    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
-    // console.log(response)
-     const card = response.data.results[1]
-     // console.log(card)
-    const { poster_path, title, release_date, vote_average, genre_ids } = card;
+//async function getUser() {
+//try {
+//    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
+//    // console.log(response)
+//     const card = response.data.results[1]
+//     // console.log(card)
+//    const { poster_path, title, release_date, vote_average, genre_ids } = card;
+//
+//    let newGenre = fetchGenres(genre_ids);
+//    return { poster_path, title, release_date, vote_average, newGenre }
+//}
+//  catch (error) {
+//    console.error(error);
+//
+//  }
 
-    let newGenre = fetchGenres(genre_ids);
-    return { poster_path, title, release_date, vote_average, newGenre }
-}
-  catch (error) {
-    console.error(error);
 
-  }
+ // async function makeMarkup() {
+//   try {
+//      const data = await getUser();
+//      wraper.innerHTML = templateFunction(data);
+//
+ //    }
+//     catch {
+//       console.error(error);
+//     }
+//   }
 
-
-  async function makeMarkup() {
-   try {
-       const data = await getUser();
-      wraper.innerHTML = templateFunction(data);
-
-     }
-     catch {
-       console.error(error);
-     }
-   }
-
-//  makeMarkup();
-
-async function makeMarkup() {
-  try {
-    const data = await getUser();
-    wraper.innerHTML = templateFunction(data);
-
-  }
-  catch {
-    console.error(error);
-  }
-}
-
-makeMarkup();
+//makeMarkup();
