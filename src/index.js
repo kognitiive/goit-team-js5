@@ -64,13 +64,6 @@ console.log(arrayGanre);
 
 //  makeMarkup();
 
-
-
-
-
-
-
-=======
 async function makeMarkup() {
   try {
     const data = await getUser();
@@ -83,4 +76,3 @@ async function makeMarkup() {
 }
 
 makeMarkup();
->>>>>>> main
