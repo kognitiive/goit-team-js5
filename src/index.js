@@ -5,6 +5,7 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
+import modalMarkUp from './js/makeMarkupModal';
 
 // console.log(templateFunction({
 //   cards: [
