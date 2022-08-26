@@ -30,18 +30,6 @@ console.log(arrayGanre);
      // console.log(card)
     const { poster_path, title, release_date, vote_average, genre_ids } = card;
 
-     let genre = []
-     if (genre_ids.length <= 2) { genre = [...genre_ids] }
-      else {
-        genre = [...genre_ids].slice(0, 2);
-        genre.push('Other');
-       genre.join(", ");
-     }
-      return { poster_path, title, release_date, vote_average, genre }
-   } catch (error) {
-     console.error(error);
-    }
-
     let newGenre = fetchGenres(genre_ids);
     return { poster_path, title, release_date, vote_average, newGenre }
 }
