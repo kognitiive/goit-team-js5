@@ -1,4 +1,6 @@
 .film_list {
+    padding: 0;
+
     @media screen and (min-width: 768px) {
         display: flex;
         flex-wrap: wrap;
@@ -18,12 +20,8 @@
         margin-bottom: 20px;
     }
 
-    &:last-child {
-        margin-bottom: 50px;
-    }
-
     @media screen and (min-width: 768px) {
-        width: 360px;
+        width: 336px;
         margin-bottom: 30px;
 
         &:nth-last-child(-n + 2) {
@@ -32,13 +30,12 @@
     }
 
     @media screen and (min-width: 1280px) {
-        width: 388px;
+        width: 395px;
         margin: 8px;
     }
 }
 
 .film-link {
-
     cursor: pointer;
 }
 
@@ -49,7 +46,6 @@
 }
 
 .film_title {
-    margin-bottom: 8px;
     font-weight: 500;
     line-height: 1.7;
     text-transform: uppercase;
@@ -63,6 +59,7 @@
 
 .film_desc {
     display: inline-block;
+    margin-right: 5px;
     font-weight: 500;
     line-height: 1.7;
     color: $accent-color;
@@ -87,5 +84,6 @@
         font-size: 20px;
         line-height: 1.2;
         height: 25px;
+        width: 45px;
     }
 }
