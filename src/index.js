@@ -4,10 +4,10 @@ const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
-import {arrayGanre} from './js/getGenre';
+import apiSearchKeyword from './js/apiSearchKeyword'
 
 // console.log(templateFunction({
-//   people: [
+//   cards: [
 //     "Yehuda Katz",
 //     "Alan Johnson",
 //     "Charles Jolley",
@@ -18,7 +18,12 @@ let currentPage = 1;
 async function renderFilms() {
   const films = await fetchFilms(currentPage);
   try {
-    const render = films.map(item => templateFunction(item)).join('');
+    const render = films.map((item) => {
+      let film = getUser(item);
+      return templateFunction(film);//прибрати
+    }).join('');// join -
+// add виклик template
+  
      wraper.insertAdjacentHTML('beforeend', render);
   }
   catch {
