@@ -18,8 +18,10 @@ console.log(arrayGanre);
  const films = fetchFilms()
    .then(result => {
      console.log(result);
-     const render = result.map(({ poster_path, title, release_date, vote_average, genre_ids } = item) => 
-                               {let newGenre = fetchGenres(genre_ids);
+     const render = result.map((item) => 
+                               {console.log(item)
+       { poster_path, title, release_date, vote_average, genre_ids } = item;
+                               let newGenre = fetchGenres(genre_ids);
                                 templateFunction(poster_path, title, release_date, vote_average, newGenre)
                                }).join('');
      wraper.insertAdjacentHTML('beforeend', render);
