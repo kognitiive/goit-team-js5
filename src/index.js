@@ -1,10 +1,9 @@
 import templateFunction from './templates/card.hbs';
-import { fetchGenres } from './js/fetchGenres';
+import {fetchGenres} from './js/fetchGenres';
 const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
-import { arrayGanre } from './js/getGenre';
 
 // console.log(templateFunction({
 //   cards: [
@@ -20,10 +19,8 @@ async function renderFilms() {
   try {
     const render = films.map((item) => {
       let film = getUser(item);
-      return templateFunction(film);//прибрати
-    }).join('');// join -
-// add виклик template
-  
+      return templateFunction(film);
+    }).join('');
      wraper.insertAdjacentHTML('beforeend', render);
   }
   catch {
@@ -38,7 +35,7 @@ function getUser(item) {
   //     const card = response.data.results[1]
   //     // console.log(card)
   const { poster_path, title, release_date, vote_average, genre_ids } = item;
-  let year = release_date.slice(0, 4)
+  let year = release_date.slice(0, 4);
   let newGenre = fetchGenres(genre_ids);
   return { poster_path, title, year, vote_average, newGenre }
 }
