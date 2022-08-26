@@ -78,93 +78,93 @@
     height: 356px;
     border-radius: 5px;
     overflow: hidden;
-  
-    @media screen and(min-width: 768px) {
+
+    @media screen and (min-width: 768px) {
       width: 264px;
       height: 373px;
     }
-    @media screen and(min-width: 1280px){
+    @media screen and (min-width: 1280px){
       width: 396px;
       height: 477px;
     }
   }
-  
+
   .modal__image {
     width: 100%;
     height: auto;
   }
-  
+
 // текстова частина -----------
 .wrap-modal {
     display: flex;
-  
+
     & ul:not(:last-child) {
       margin-right: 80px;
-  
-      @media screen and(min-width: 320px) {
-        margin-right: 20px; 
+
+      @media screen and (min-width: 320px) {
+        margin-right: 20px;
       }
-  
-      @media screen and(min-width: 768px) {
-        margin-right: 40px; 
+
+      @media screen and (min-width: 768px) {
+        margin-right: 40px;
       }
-  
-      @media screen and(min-width: 1280px) {
+
+      @media screen and (min-width: 1280px) {
         margin-right: 80px;
       }
     }
-  
-  
+
+
   }
-  
+
   .content__text {
     margin-top: 30px;
     width: 240px;
-  
-    @media screen and(min-width: 768px) {
+
+    @media screen and (min-width: 768px) {
       margin-left: 30px;
       margin-top: 0px;
       width: 264px;
     }
-  
-    @media screen and(min-width: 1280px) {
+
+    @media screen and (min-width: 1280px) {
       width: 396px;
     }
   }
-  
+
   .modal__list {
     margin-bottom: 20px;
     font-size: 12px;
     line-height: 1.33;
     color: #8c8c8c;
-  
+
     &--keys {
       width: 70px;
     }
-  
+
     & li:not(:last-child) {
       margin-bottom: 10px;
     }
   }
-  
+
   .modal__list--values {
     color: inherit;
-  
+
     & li:nth-child(-n + 2) {
       line-height: 1.16;
     }
   }
-  
+
   .modal-list__item {
     display: flex;
-  
+
     & span {
       display: flex;
       align-items: center;
       justify-content: center;
     }
   }
-  
+
   .modal__rating {
     line-height: 1.16;
     height: 16px;
@@ -172,7 +172,7 @@
     background-color: #f7f7f7;
     border-radius: 5px;
     color: #000000;
-  
+
     &--orange {
       color: #ffffff;
       line-height: 1.16;
@@ -181,7 +181,7 @@
       background-color: #ff6b01;
       border-radius: 5px;
     }
-  
+
     &--slash {
       line-height: 1.16;
       height: 16px;
@@ -189,7 +189,7 @@
       padding-right: 3px;
     }
   }
-  
+
   .modal-text__title {
     margin-bottom: 10px;
     font-weight: 500;
@@ -197,7 +197,7 @@
     line-height: 1.33;
     text-transform: uppercase;
   }
-  
+
   .modal-text__item {
     margin-bottom: 21px;
     font-weight: 500;

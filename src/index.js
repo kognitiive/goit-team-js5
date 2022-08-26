@@ -7,22 +7,30 @@ import fetchFilms from './js/fetchFilms';
 import { arrayGanre } from './js/getGenre';
 
 // console.log(templateFunction({
-//   people: [
+//   cards: [
 //     "Yehuda Katz",
 //     "Alan Johnson",
 //     "Charles Jolley",
 //   ],
 // }));
+let currentPage = 1;
 
-const films = fetchFilms()
-  .then(result => {
-    console.log(result);
-    const render = result.map((item) => {
-      const data = getUser(item);
-      return templateFunction(data)
-    }).join('');
-    wraper.insertAdjacentHTML('beforeend', render);
-  });
+async function renderFilms() {
+  const films = await fetchFilms(currentPage);
+  try {
+    const render = films.map((item) => {
+      let film = getUser(item);
+      return templateFunction(film);//прибрати
+    }).join('');// join -
+// add виклик template
+  
+     wraper.insertAdjacentHTML('beforeend', render);
+  }
+  catch {
+    Notiflix.Notify.failure('There is something wrong');
+  }
+}
+renderFilms();
 
 function getUser(item) {
   //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
@@ -34,17 +42,3 @@ function getUser(item) {
   let newGenre = fetchGenres(genre_ids);
   return { poster_path, title, year, vote_average, newGenre }
 }
-
-
- // async function makeMarkup() {
-//   try {
-//      const data = await getUser();
-//      wraper.innerHTML = templateFunction(data);
-//
- //    }
-//     catch {
-//       console.error(error);
-//     }
-//   }
-
-//makeMarkup();
