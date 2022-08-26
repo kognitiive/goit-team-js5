@@ -5,7 +5,6 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import {arrayGanre} from './js/getGenre';
-console.log(arrayGanre);
 
 // console.log(templateFunction({
 //   people: [
@@ -19,29 +18,25 @@ console.log(arrayGanre);
    .then(result => {
      console.log(result);
      const render = result.map((item) => 
-                               {console.log(item);
-      const { poster_path, title, release_date, vote_average, genre_ids } = item;
-                               let newGenre = fetchGenres(genre_ids);
-                                templateFunction(poster_path, title, release_date, vote_average, newGenre)
+                               { const data = await getUser(item)
+                                templateFunction(data)
                                }).join('');
      wraper.insertAdjacentHTML('beforeend', render);
    });
 
-//async function getUser() {
-//try {
+async function getUser(item) {
+try {
 //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
 //    // console.log(response)
 //     const card = response.data.results[1]
 //     // console.log(card)
-//    const { poster_path, title, release_date, vote_average, genre_ids } = card;
-//
-//    let newGenre = fetchGenres(genre_ids);
-//    return { poster_path, title, release_date, vote_average, newGenre }
-//}
-//  catch (error) {
-//    console.error(error);
-//
-//  }
+const { poster_path, title, release_date, vote_average, genre_ids } = item;
+  let newGenre = fetchGenres(genre_ids);
+  return { poster_path, title, release_date, vote_average, newGenre }
+  }
+  catch (error) {
+      console.error(error);
+  }
 
 
  // async function makeMarkup() {
