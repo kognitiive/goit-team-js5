@@ -4,6 +4,7 @@ const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
+// import './js/modal';
 
 // console.log(templateFunction({
 //   cards: [
@@ -17,13 +18,17 @@ let currentPage = 1;
 async function renderFilms() {
   const films = await fetchFilms(currentPage);
   try {
-    const render = films.map((item) => {
-      let film = getUser(item);
-      return templateFunction(film);
-    }).join('');
-     wraper.insertAdjacentHTML('beforeend', render);
+    const render = films.map(item => {return getUser(item) });
+    console.log(render)
+    const markup = templateFunction({
+      cards: [
+        ...render
+      ]
+    })
+     wraper.insertAdjacentHTML('beforeend', markup);
   }
   catch {
+    console.error(error);
     Notiflix.Notify.failure('There is something wrong');
   }
 }
