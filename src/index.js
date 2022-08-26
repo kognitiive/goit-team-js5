@@ -13,16 +13,20 @@ import {arrayGanre} from './js/getGenre';
 //     "Charles Jolley",
 //   ],
 // }));
+let currentPage = 1;
 
- const films = fetchFilms()
-   .then(result => {
-     console.log(result);
-     const render = result.map((item) => 
-                               { const data = getUser(item);
-                                return templateFunction(data)
-                               }).join('');
+async function renderFilms() {
+  const films = await fetchFilms(currentPage);
+  try {
+    const render = films.map(item => templateFunction(item)).join('');
      wraper.insertAdjacentHTML('beforeend', render);
-   });
+  }
+  catch {
+    Notiflix.Notify.failure('There is something wrong');
+
+  }
+}
+renderFilms();
 
 function getUser(item) {
 //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
