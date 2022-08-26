@@ -1,8 +1,8 @@
 import templateFunction from './templates/card.hbs';
-import fetchGenres from './js/fetchGenres';
+import {fetchGenres} from './js/fetchGenres';
 const axios = require('axios').default;
 const wraper = document.querySelector('.div');
-import arrayGanre from './js/getGenre';
+import {arrayGanre} from './js/getGenre';
 console.log(arrayGanre);
 // console.log(templateFunction({
 //   people: [
