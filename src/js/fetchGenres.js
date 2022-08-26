@@ -6,7 +6,7 @@ export function fetchGenres(array) {
         genre = [...array].slice(0, 2);
     }
     const newGenre = []
-    for (item of arrayGanre) {
+    for (let item of arrayGanre) {
         genre.map((genr) => {
             if (genr === item.id) { newGenre.push(item.name) }
         });
