@@ -4,7 +4,7 @@ const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
-// import './js/modal';
+import modal from './js/modal.js';
 
 // console.log(templateFunction({
 //   cards: [
@@ -19,20 +19,21 @@ async function renderFilms() {
   const films = await fetchFilms(currentPage);
   try {
     const render = films.map(item => {return getUser(item) });
-    console.log(render)
     const markup = templateFunction({
       cards: [
         ...render
       ]
     })
-     wraper.insertAdjacentHTML('beforeend', markup);
+    wraper.insertAdjacentHTML('beforeend', markup);
   }
   catch {
     console.error(error);
     Notiflix.Notify.failure('There is something wrong');
   }
 }
-renderFilms();
+renderFilms().then(r => {
+modal()
+})
 
 function getUser(item) {
   //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
