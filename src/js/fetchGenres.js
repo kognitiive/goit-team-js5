@@ -1,4 +1,4 @@
-import arrayGanre from './js/getGenre.js'
+import arrayGanre from './getGenre.js'
 export function fetchGenres(array) {
     let genre = []
     if (array.length <= 2) { genre = [...array] }
