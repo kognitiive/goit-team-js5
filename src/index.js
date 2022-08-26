@@ -2,13 +2,11 @@ import templateFunction from './templates/card.hbs';
 import {fetchGenres} from './js/fetchGenres';
 const axios = require('axios').default;
 const wraper = document.querySelector('.div');
-<<<<<<< HEAD
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
-=======
 import {arrayGanre} from './js/getGenre';
 console.log(arrayGanre);
->>>>>>> main
+
 // console.log(templateFunction({
 //   people: [
 //     "Yehuda Katz",
@@ -31,7 +29,7 @@ console.log(arrayGanre);
      const card = response.data.results[1]
      // console.log(card)
     const { poster_path, title, release_date, vote_average, genre_ids } = card;
-<<<<<<< HEAD
+
      let genre = []
      if (genre_ids.length <= 2) { genre = [...genre_ids] }
       else {
@@ -43,15 +41,16 @@ console.log(arrayGanre);
    } catch (error) {
      console.error(error);
     }
-=======
+
     let newGenre = fetchGenres(genre_ids);
     return { poster_path, title, release_date, vote_average, newGenre }
-  } catch (error) {
+}
+  catch (error) {
     console.error(error);
->>>>>>> main
+
   }
 
-<<<<<<< HEAD
+
   async function makeMarkup() {
    try {
        const data = await getUser();
