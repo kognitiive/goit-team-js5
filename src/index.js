@@ -23,7 +23,6 @@ async function renderFilms() {
   }
   catch {
     Notiflix.Notify.failure('There is something wrong');
-
   }
 }
 renderFilms();
