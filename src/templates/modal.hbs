@@ -3,9 +3,11 @@
 
   <img class='modal__image' src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" data-id="{{id}}" />
 </div>
+<div class="content__text">
+  <h2 class='modal__title'>{{title}}</h2>
 
    <div class='wrap-modal'>
-    <h2 class='modal__title'>{{title}}</h2>
+    
 
      <ul class='modal__list modal__list--keys'>
       <li>Vote / Votes</li>
@@ -22,19 +24,17 @@
         <span class='modal__rating'>{{vote_count}}</span>
       </li>
       <li>{{popularity}}</li>
-      <li>{{#if curFilm.original_title}}
-          <p>{{curFilm.original_title}}</p>
-        {{/if}}
-        {{#if curFilm.name}}
-          <p>{{curFilm.name}}</p>
-        {{/if}}
+      <li>
+          <p>{{original_title}}</p>
+       
+      
       </li>
-      <li>{{curFilm.genre_ids}}</li>
+      <li>{{genre_ids}}</li>
     </ul>
 
   <div class='modal-text'>
     <h3 class='modal-text__title'>About</h3>
-    <p class='modal-text__item'>{{curFilm.overview}}</p>
+    <p class='modal-text__item'>{{overview}}</p>
     </div>
   </div>
 </div>
