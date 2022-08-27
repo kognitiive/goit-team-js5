@@ -6,6 +6,7 @@ import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
 import { searchKeyword } from './js/apiSearchKeyword'
+import modalGoIT from './js/modalGoIT';
 // console.log(templateFunction({
 //   cards: [
 //     "Yehuda Katz",
