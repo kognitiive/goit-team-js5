@@ -1,10 +1,10 @@
-// import modalCard from './templates/modal.hbs';
+import modalCard from './templates/modal.hbs';
 // // Змінна для фільму, який відкритий в модалці
 // let curFilm;
 
-// Это первый вариант. То есть делать отдельно функцию на запрос .
 
 
+const cardModal = document.querySelector('.film_list');
 
 // / export default function modalFetch(id) {
 // const url = `https://api.themoviedb.org/3/movie/${id}?api_key=39e7639bbdd6f3ff4985c89cb032db66`;

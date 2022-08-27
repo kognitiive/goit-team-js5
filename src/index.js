@@ -1,9 +1,9 @@
+import fetchFilms from './js/fetchFilms';
 import templateFunction from './templates/card.hbs';
 import { fetchGenres } from './js/fetchGenres';
 const axios = require('axios').default;
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
-import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
 import { searchKeyword } from './js/apiSearchKeyword'
 
