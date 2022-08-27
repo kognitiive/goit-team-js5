@@ -54,6 +54,7 @@ function getUser(item) {
   return { poster_path, title, year, raiting, newGenre }
 }
 
+
 // функція гернерує 2 і наступні сторінки
 export async function renderFilmsOnLoadMore() {
   currentPage = paginat.currentPage;
