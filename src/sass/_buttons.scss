@@ -13,13 +13,24 @@
   height: 44px;
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid #ffffff;
+  border: 1px solid $first-color;
   border-radius: 5px;
 
   font-weight: 500;
   font-size: 12px;
   line-height: 1 33;
-  color: #ffffff;
+  color: $first-color;
+
+  transition-property: background-color, border;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    border: $accent-color;
+    background-color: $accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
 
   @media screen and (min-width: 768px) {
     width: 152px;
@@ -37,8 +48,8 @@
   margin-right: 0;
 }
 .button__header-active {
-  border: #ff6b01;
-  background: #ff6b01;
+  border: $accent-color;
+  background: $accent-color;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 }
 
@@ -58,7 +69,17 @@
   font-size: 12px;
   line-height: 1.33;
   margin-right: 20px;
-  color: #000000;
+  color: $text-color;
+
+  transition-property: background-color, border;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    border: $accent-color;
+    background-color: $accent-color;
+  }
 
   @media screen and (min-width: 768px) {
     width: 125px;
@@ -74,16 +95,16 @@
 }
 
 .button__modal-active {
-  color: #ffffff;
-  border: #ff6b01;
-  background: #ff6b01;
+  color: $first-color;
+  border: $accent-color;
+  background: $accent-color;
   border-radius: 5px;
 }
 
 // додати в header
 // <div class="button__container-header">
 //   <button class="button__header" type="button">WATCHED</button>
-//   <button class="button__header button__header-active" type="button">
+//   <button class="button__header " type="button">
 //     QUEUE
 //   </button>
 // </div>
@@ -91,7 +112,7 @@
 // додати в modal
 // <div class="button__container-modal">
 //   <button class="button__modal" type="button">ADD TO WATCHED</button>
-//   <button class="button__modal button__modal-active" type="button">
+//   <button class="button__modal" type="button">
 //     ADD TO QUEUE
 //   </button>
 // </div>
