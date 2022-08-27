@@ -3,10 +3,10 @@ export const refs = {
     closeBtn: document.querySelector('.window-svg--close'),
 }
 
-function openModalWindow() { }
+//function openModalWindow() { }
 
-function closeModalWindow() { }
+//function closeModalWindow() { }
 
-refs.openLink.addEventListener('click', openModalWindow())
-refs.closeBtn.addEventListener('click', closeModalWindow())
+//refs.openLink.addEventListener('click', openModalWindow())
+//refs.closeBtn.addEventListener('click', closeModalWindow())
 
