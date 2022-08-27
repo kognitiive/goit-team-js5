@@ -5,6 +5,7 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
+import { paginat } from './js/pagination';
 
 // console.log(templateFunction({
 //   cards: [
@@ -15,10 +16,14 @@ import modal from './js/modal.js';
 // }));
 let currentPage = 1;
 
-async function renderFilms() {
+export async function renderFilms() {
   const films = await fetchFilms(currentPage);
   try {
-    const render = films.map(item => { return getUser(item) });
+    const render = films.results.map(item => {
+      return getUser(item);
+    });
+    paginat.options.totalItems = films.total_results;
+    paginat.options.totalPages = films.total_pages;
     console.log(render)
     const markup = templateFunction({
       cards: [
@@ -26,6 +31,7 @@ async function renderFilms() {
       ]
     })
     wraper.insertAdjacentHTML('beforeend', markup);
+    paginat.pagMake();
   }
   catch {
     console.error(error);
@@ -46,4 +52,22 @@ function getUser(item) {
   let year = release_date.slice(0, 4);
   let newGenre = fetchGenres(genre_ids);
   return { poster_path, title, year, raiting, newGenre }
+}
+
+// функція гернерує 2 і наступні сторінки
+export async function renderFilmsOnLoadMore() {
+  currentPage = paginat.currentPage;
+  const films = await fetchFilms(currentPage);
+  try {
+    const render = films.results.map(item => {
+      return getUser(item);
+    });
+    const markup = templateFunction({
+      cards: [...render],
+    });
+    wraper.innerHTML = markup;
+  } catch {
+    console.error(error);
+    Notiflix.Notify.failure('There is something wrong');
+  }
 }

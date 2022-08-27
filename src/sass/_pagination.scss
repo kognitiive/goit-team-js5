@@ -1,6 +1,4 @@
-// .is-hidden {
-//     display: none;
-//   }
+
 
 .pagination-container {
   display: flex;
@@ -21,6 +19,7 @@
 .tui-page-btn {
   display: flex;
   padding: 10px;
+  color: #000000;
   text-align: center;
   font-weight: 500;
   font-size: 12px;
@@ -77,4 +76,8 @@
 .arrow:focus {
   background-color: #FF6B08;
   color: #FFFFFF;
+}
+
+.is-hidden {
+  display: none;
 }
