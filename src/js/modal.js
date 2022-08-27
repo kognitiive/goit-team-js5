@@ -1,3 +1,4 @@
+
 export default function () { 
   !function (e) { "function" != typeof e.matches && (e.matches = e.msMatchesSelector || e.mozMatchesSelector || e.webkitMatchesSelector || function (e) { for (var t = this, o = (t.document || t.ownerDocument).querySelectorAll(e), n = 0; o[n] && o[n] !== t;)++n; return Boolean(o[n]) }), "function" != typeof e.closest && (e.closest = function (e) { for (var t = this; t && 1 === t.nodeType;) { if (t.matches(e)) return t; t = t.parentNode } return null }) }(window.Element.prototype);
   // import modal from './templates/modal.hbs';
@@ -56,3 +57,24 @@ export default function () {
       this.classList.remove('active');
     });
 }
+// Функция закрытия модалки по эскейпу
+// function onKeyPress(event) {
+//   if (event.code === 'Escape') {
+//     onBtnCloseModalClick();
+//   }
+// }
+// btnModalCloseEl.addEventListener('click', onBtnCloseModalClick);
+// addEventListener('click', onOverlayClick);
+
+// Функция закрытия модалки по клику на бекдроп
+// document.querySelector('.overlay');
+// function onOverlayClick(e) {
+//   if (e.target === e.currentTarget) {
+//     onBtnCloseModalClick();
+//   }
+// }
+// // Функция закрытия модалки
+// function onBtnCloseModalClick() {
+//   backdropEl.classList.add('is-hidden');
+//   window.removeEventListener('keydown', onKeyPress);
+// }
