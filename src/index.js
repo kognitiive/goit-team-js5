@@ -5,7 +5,7 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
-import { searchKeyword } from './js/apiSearchKeyword'
+import { searchKeyword } from './js/apiSearchKeyword';
 // console.log(templateFunction({
 //   cards: [
 //     "Yehuda Katz",
@@ -32,6 +32,7 @@ async function renderFilms() {
     Notiflix.Notify.failure('There is something wrong');
   }
 }
+
 renderFilms().then(r => {
   modal()
 })

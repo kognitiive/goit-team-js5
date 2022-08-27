@@ -1,16 +1,20 @@
+<div class="modal-thumb" data-action="{{poster_path}}">
 <div class='thumb'>
 
-  <img class='modal__image' src=https://image.tmdb.org/t/p/w500{{poster_path}} alt="{{title}}" />
+  <img class='modal__image' src=https://image.tmdb.org/t/p/w500{{poster_path}} alt="{{title}}" data-id="{{poster_path}}" />
 </div>
-<div class='content__text'>
+
+   <div class='wrap-modal'>
     <h2 class='modal__title'>{{title}}</h2>
-  <div class='wrap-modal'>
-    <ul class='modal__list modal__list--keys'>
+
+     <ul class='modal__list modal__list--keys'>
       <li>Vote / Votes</li>
       <li>Popularity</li>
       <li>Original Title</li>
       <li>Genre</li>
     </ul>
+
+
     <ul class='modal__list modal__list--values'>
       <li class='modal-list__item'>
         <span class='modal__rating--orange'>{{vote_average}}</span>
@@ -27,9 +31,23 @@
       </li>
       <li>{{curFilm.genre_ids}}</li>
     </ul>
-  </div>
+
   <div class='modal-text'>
     <h3 class='modal-text__title'>About</h3>
     <p class='modal-text__item'>{{curFilm.overview}}</p>
+    </div>
   </div>
 </div>
+
+
+
+{{!-- <p class="modal__text modal__vote"> Vote / Votes
+  <span class="modal__vote_average">{{vote_average}}</span>/<span
+class="modal__vote_count">{{vote_count}}</span>
+  </p>
+  <p class="modal_popularity modal__text">
+            Popularity<span class="modal__data">{{popularity}}</span>
+        </p>
+ <p class="modal__text"> Original Title
+  <span class="modal__original_title">{{original_title}}</span>
+        </p> --}}
