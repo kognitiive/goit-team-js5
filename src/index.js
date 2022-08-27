@@ -42,11 +42,11 @@ function getUser(item) {
   //    // console.log(response)
   //     const card = response.data.results[1]
   //     // console.log(card)
-  const { poster_path, title, release_date, vote_average, genre_ids } = item;
+  const { poster_path, title, release_date, vote_average, genre_ids, id } = item;
   let raiting = vote_average.toFixed(1)
   let year = release_date.slice(0, 4);
   let newGenre = fetchGenres(genre_ids);
-  return { poster_path, title, year, raiting, newGenre }
+  return { poster_path, title, year, raiting, newGenre, id }
 }
 
 
