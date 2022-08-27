@@ -5,6 +5,7 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
+import './js/modal';
 import { searchKeyword } from './js/apiSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
@@ -41,9 +42,9 @@ export async function renderFilms() {
   }
 }
 
-renderFilms().then(r => {
-  modal()
-})
+// renderFilms().then(r => {
+//   modal()
+// })
 
 function getUser(item) {
   //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
