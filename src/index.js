@@ -5,8 +5,9 @@ const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
-import { searchKeyword } from './js/apiSearchKeyword'
-import { modalGoIT } from './js/modal-go-it';
+import { searchKeyword } from './js/apiSearchKeyword';
+ import { modalGoIT } from './js/modal-go-it';
+
 // console.log(templateFunction({
 //   cards: [
 //     "Yehuda Katz",
@@ -38,6 +39,7 @@ export async function renderFilms() {
     Notiflix.Notify.failure('There is something wrong');
   }
 }
+
 renderFilms().then(r => {
   modal()
 })
@@ -53,10 +55,6 @@ function getUser(item) {
   let newGenre = fetchGenres(genre_ids);
   return { poster_path, title, year, raiting, newGenre, id }
 }
-
-
-
-
 
 import debounce from 'lodash.debounce';
 
