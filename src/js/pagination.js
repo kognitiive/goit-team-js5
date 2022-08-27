@@ -1,6 +1,8 @@
 import Pagination from 'tui-pagination';
 import Notiflix from 'notiflix';
-Notiflix.Loading.init({ svgColor: $accent-color });
+import { onLoadMore, renderFilms } from '../index';
+import { renderFilmsOnLoadMore } from '../index';
+Notiflix.Loading.init({ svgColor: '#FF6B08' });
 
 export const paginat = {
   contain: document.querySelector('#tui-pagination-container'),
@@ -14,7 +16,7 @@ export const paginat = {
     lastItemClassName: 'tui-last-child',
     usageStatistics: false,
     template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      page: '<a href="#" class="link tui-page-btn">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton: type => {
@@ -22,27 +24,27 @@ export const paginat = {
 
         if (type.type === 'first') {
           template =
-            '<a href="#" class=" tui-page-btn tui-first">' +
+            '<a href="#" class="link  tui-page-btn tui-first">' +
             '<span class="tui-ico-first">1</span>' +
             '</a>';
         }
         if (type.type === 'prev') {
           template =
-            '<a href="#" class="arrow tui-page-btn tui-prev tui-first-child">' +
+            '<a href="#" class="link arrow tui-page-btn tui-prev tui-first-child">' +
             '<span class="material-icons">arrow_back</span>' +
             '</a>';
         }
 
         if (type.type === 'next') {
           template =
-            '<a href="#" class="arrow tui-page-btn tui-next">' +
+            '<a href="#" class="link arrow tui-page-btn tui-next">' +
             '<span class="material-icons">arrow_forward</span>' +
             '</a>';
         }
 
         if (type.type === 'last') {
           template =
-            '<a href="#" class=" tui-page-btn tui-last">' +
+            '<a href="#" class="link  tui-page-btn tui-last">' +
             '<span class="tui-ico-last">' +
             Math.ceil(
               paginat.options.totalItems / paginat.options.itemsPerPage
@@ -58,25 +60,32 @@ export const paginat = {
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</span>',
       moreButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip dots">' +
+        '<a href="#" class="link tui-page-btn tui-{{type}}-is-ellip dots">' +
         '<span class="material-icons">more_horiz</span>' +
         '</a>',
     },
   },
   pagMake: function () {
     const pagination = new Pagination(this.contain, this.options);
-    if (this.options.totalItems <= this.options.itemsPerPage) {
-      //якщо всі елементи вміщаються на одній сторінці, то паг-ція не потрібна
-      this.contain.classList.add('is-hidden');
-      return;
+    console.log(
+      'tI / tP:',
+      this.options.totalItems,
+      '/',
+      this.options.totalPages
+    );
+    if (this.options.totalItems > this.options.itemsPerPage) {
+      //якщо всі елементи вміщаються на одній сторінці, то паг-ція не потрібна => включено is-hidden за замовчуванням
+      // інакше прибираємо is-hidden
+      this.contain.classList.remove('is-hidden');
     }
     hidefirstAndLastPages(1, this.options.totalPages);
-    Notiflix.Loading.dots('Loading...'); // нотіфлікси можна і в іншу функцію забрати
+    Notiflix.Loading.dots('Loading...'); 
     Notiflix.Loading.remove(350);
     pagination.on('afterMove', event => {
       Notiflix.Loading.dots('Loading...');
-      backendRequest.pageNumber = event.page; // передаємо значення вибраної сторінки в fetch-функцію
-      onLoadMore();
+      this.currentPage = event.page;
+
+      renderFilmsOnLoadMore();
       Notiflix.Loading.remove(350);
       hidefirstAndLastPages(event.page, this.options.totalPages);
     });
