@@ -84,6 +84,7 @@ export const paginat = {
     pagination.on('afterMove', event => {
       Notiflix.Loading.dots('Loading...');
       this.currentPage = event.page;
+
       
       renderFilmsOnLoadMore();
       Notiflix.Loading.remove(350);
