@@ -145,11 +145,11 @@ li {
     margin-right: 80px;
 
     @media screen and (min-width: 320px){
-      margin-right: 20px; 
+      margin-right: 20px;
     }
 
     @media screen and (min-width: 768px) {
-      margin-right: 40px; 
+      margin-right: 40px;
     }
 
     @media screen and (min-width: 1280px) {
@@ -201,6 +201,7 @@ padding-left: 0;
 
 .modal-list__item {
   display: flex;
+  flex-wrap: nowrap;
 
   & span {
     display: flex;
@@ -234,6 +235,7 @@ padding-left: 0;
   }
 }
 
+
 .modal-text__title {
   margin-bottom: 10px;
   font-weight: 500;
@@ -255,7 +257,7 @@ padding-left: 0;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
- 
+
 
 
   & li {

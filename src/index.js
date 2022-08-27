@@ -6,7 +6,7 @@ import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
 import { searchKeyword } from './js/apiSearchKeyword';
-import { modalGoIT } from './js/modal-go-it';
+ import { modalGoIT } from './js/modal-go-it';
 
 // console.log(templateFunction({
 //   cards: [

@@ -2,6 +2,7 @@
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
 
+const modalWindow = document.querySelector('.modal__content');
 
 export default function () {
 
@@ -22,6 +23,11 @@ export default function () {
               люди могут сделать по-разному. Кто-то сделает ссылку, кто-то кнопку.
               Нужно подстраховаться. */
         e.preventDefault();
+        const markup = makeMarkupModal(e.target.dataset.id)
+          .then(data => {
+           modalWindow.insertAdjacentHTML('beforeend', modalCard(data));
+          });
+
 
         /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
               и будем искать модальное окно с таким же атрибутом. */
