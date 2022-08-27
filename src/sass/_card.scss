@@ -1,10 +1,11 @@
 .film_list {
-    padding: 0;
+    padding: 20px 0 40px;
 
     @media screen and (min-width: 768px) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        padding: 60px 0 60px;
     }
 
     @media screen and (min-width: 1280px) {
