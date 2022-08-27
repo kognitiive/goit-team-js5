@@ -6,6 +6,8 @@ import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
 import { searchKeyword } from './js/apiSearchKeyword';
+import { modalGoIT } from './js/modal-go-it';
+
 // console.log(templateFunction({
 //   cards: [
 //     "Yehuda Katz",
@@ -42,16 +44,12 @@ function getUser(item) {
   //    // console.log(response)
   //     const card = response.data.results[1]
   //     // console.log(card)
-  const { poster_path, title, release_date, vote_average, genre_ids } = item;
+  const { poster_path, title, release_date, vote_average, genre_ids, id } = item;
   let raiting = vote_average.toFixed(1)
   let year = release_date.slice(0, 4);
   let newGenre = fetchGenres(genre_ids);
-  return { poster_path, title, year, raiting, newGenre }
+  return { poster_path, title, year, raiting, newGenre, id }
 }
-
-
-
-
 
 import debounce from 'lodash.debounce';
 
