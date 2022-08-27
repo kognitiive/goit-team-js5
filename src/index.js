@@ -6,6 +6,7 @@ import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
 
+
 // console.log(templateFunction({
 //   cards: [
 //     "Yehuda Katz",
@@ -33,7 +34,7 @@ async function renderFilms() {
   }
 }
 renderFilms().then(r => {
-modal()
+  modal();
 })
 
 function getUser(item) {
