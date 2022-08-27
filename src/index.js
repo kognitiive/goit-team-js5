@@ -1,6 +1,6 @@
 import templateFunction from './templates/card.hbs';
 import { fetchGenres } from './js/fetchGenres';
-const axios = require('axios').default;
+import axios from 'axios';
 const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
 import fetchFilms from './js/fetchFilms';

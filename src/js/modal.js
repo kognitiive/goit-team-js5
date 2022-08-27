@@ -25,6 +25,7 @@ export default function () {
         e.preventDefault();
         const markup = makeMarkupModal(e.target.dataset.id)
           .then(data => {
+            console.log(data)
            modalWindow.insertAdjacentHTML('beforeend', modalCard(data));
           });
 
