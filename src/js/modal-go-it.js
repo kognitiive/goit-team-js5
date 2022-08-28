@@ -2,6 +2,7 @@ const basicLightbox = require('basiclightbox');
 const refs = {
     openLink: document.querySelector('.footer__link'),
     closeBtn: document.querySelector('.window-btn'),
+    backdrop: document.querySelector('.window-backdrop'),
 }
 
 const instance = basicLightbox.create(
@@ -9,7 +10,7 @@ const instance = basicLightbox.create(
     {
         onShow: () => {
             window.addEventListener('keydown', onEscCode)
-            instance.element().querySelector('button').onclick = instance.close
+            instance.element().querySelector('.window-btn').onclick = instance.close
         },
 
         onClose: () => {
