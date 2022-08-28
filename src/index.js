@@ -111,3 +111,36 @@ export async function renderFilmsOnLoadMore() {
     Notiflix.Notify.failure('There is something wrong');
   }
 }
+
+
+//----спроба записати інфо в локал сторедж при кліці на картинку фільму 
+// ----та перевірити чи вона вже є в локалі
+//---- код можна буде видалити
+
+const cardFromModal = document.querySelector('#list-container')
+cardFromModal.addEventListener('click', addToLocalStorage)
+
+const chooseFilmsArray = [];
+
+function addToLocalStorage(event) {
+  const chooseFilm = {
+    src: event.target.src,
+    alt: event.target.alt
+  }
+  if (localStorage.getItem("chooseFilmsArray") === null){
+    console.log('Локалсторидж пустий, пушимо інфо...')
+    chooseFilmsArray.push(chooseFilm)
+    localStorage.setItem("chooseFilmsArray", JSON.stringify(chooseFilmsArray))
+  } else{
+    console.log(localStorage.getItem("chooseFilmsArray"))
+    infoInLocal = JSON.parse(localStorage.getItem("chooseFilmsArray"))
+    const audit = infoInLocal.find((arr) => arr.alt === event.target.alt)
+    console.log(audit)
+    if(audit){
+      console.log('Такий фільм вже є...')
+    } else {
+      chooseFilmsArray.push(chooseFilm)
+      localStorage.setItem("chooseFilmsArray", JSON.stringify(chooseFilmsArray))
+    }
+  }
+  }
