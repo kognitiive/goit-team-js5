@@ -1,4 +1,3 @@
-
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
 import BasicLightbox from 'basiclightbox';
@@ -89,9 +88,14 @@ export default async function openModal(e) {
 //       document.querySelector('.modal.active').classList.remove('active');
 //       this.classList.remove('active');
 //     });
-// }
+//}
 
-
+//         /* После того как нашли нужное модальное окно, добавим классы
+//               подложке и окну чтобы показать их. */
+//         modalElem.classList.add('active');
+//         overlay.classList.add('active');
+//       }); // end click
+//     }); // end foreach
 
 //     closeButtons.forEach(function (item) {
 //       item.addEventListener('click', function (e) {
@@ -105,7 +109,7 @@ export default async function openModal(e) {
 //     document.body.addEventListener(
 //       'keyup',
 //       function (e) {
-//         var key = e.keyCode;
+//         const key = e.keyCode;
 
 //         if (key == 27) {
 //           document.querySelector('.modal.active').classList.remove('active');
