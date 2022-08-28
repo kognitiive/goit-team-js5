@@ -3,7 +3,7 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import BasicLightBox  from 'basiclightbox';
 
-import { renderFilms } from './js/renderFilms';
+import renderFilms from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
 import openModal from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';

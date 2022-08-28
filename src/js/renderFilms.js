@@ -3,17 +3,18 @@ import templateFunction from '../templates/card.hbs';
 import Notiflix from "notiflix";
 
 
-export async function renderFilms(films) {
+export default async function renderFilms(films) {
   try {
     const render = films.results.map(item => {
       return getUser(item);
     });
     // console.log(render)
-    return markup = templateFunction({
+    const markup = templateFunction({
       cards: [
         ...render
       ]
     })
+    return markup
   }
   catch {
     console.error(error);
