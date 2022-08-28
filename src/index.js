@@ -1,21 +1,18 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import { BasicLightBox } from 'basiclightbox';
-
 import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
-// import modal from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
-import { paginat } from './js/pagination'
+import { paginat } from './js/pagination';
+import './js/makeMarkupModal';
 
 
 
 const wraper = document.querySelector('.div');
 
 let currentPage = 1;
-
 
 //Перший рендер
 async function makeMarkup(currentPage) {
@@ -27,9 +24,10 @@ async function makeMarkup(currentPage) {
   paginat.pagMake();
 }
 
-makeMarkup(currentPage).then(r => {
-  modal()
-});
+makeMarkup(currentPage);
+//   .then(r => {
+//   modal()
+// });
 
 //Рендер при пошуку
 const input = document.querySelector('.input')
