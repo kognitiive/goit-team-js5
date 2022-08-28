@@ -1,4 +1,16 @@
 <div class="modal-thumb" data-action="{{id}}">
+  <div>
+    <button data-modal-close class="js-modal-close button-modal--close">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          
+          <path id="Vector 1" d="M8 8L22 22" stroke="black" stroke-width="2"/>
+          <path id="Vector 2" d="M8 22L22 8" stroke="black" stroke-width="2"/>
+          
+      </svg>
+       {{!-- <svg class="close__svg" width="15" height="15">
+        <use href="../images/symbol-defs.svg#close"></use>
+      </svg> --}}
+  </div>
 <div class="thumb">
 
   <img class='modal__image' src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" data-id="{{id}}" />
@@ -6,17 +18,13 @@
 <div class="content__text">
   <h2 class='modal__title'>{{title}}</h2>
 
-   <div class='wrap-modal'>
-    
-
-     <ul class='modal__list modal__list--keys'>
+  <div class='wrap-modal'>
+    <ul class='modal__list modal__list--keys'>
       <li>Vote / Votes</li>
       <li>Popularity</li>
       <li>Original Title</li>
       <li>Genre</li>
     </ul>
-
-
     <ul class='modal__list modal__list--values'>
       <li class='modal-list__item'>
         <span class='modal__rating--orange'>{{vote_average}}</span>
@@ -26,20 +34,19 @@
       <li>{{popularity}}</li>
       <li>
           <p>{{original_title}}</p>
-       
-      
-      </li>
+       </li>
       <li>{{genre_ids}}</li>
     </ul>
+   </div>
 
   <div class='modal-text'>
     <h3 class='modal-text__title'>About</h3>
     <p class='modal-text__item'>{{overview}}</p>
-    </div>
   </div>
-</div>
 
-   </div>
+
+
+   
   <ul class='list-buttons'>
     <li>
       <button type='submit' class='button-modal button-modal--orange' id='watchedInModal'>add to Watched</button>
@@ -47,7 +54,8 @@
     <li>
       <button type='submit' class='button-modal' id='queueInModal'>add to queue</button>
     </li>
-
   </ul>
+  </div>
+</div>
 </div>
 </div>

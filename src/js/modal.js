@@ -1,4 +1,3 @@
-
 // import modalCard from '../templates/modal.hbs';
 // import makeMarkupModal from './makeMarkupModal';
 
