@@ -4,7 +4,6 @@ import makeMarkupModal from './makeMarkupModal';
 import BasicLightBox  from 'basiclightbox';
 
   var modalButtons = document.querySelectorAll('.js-open-modal'),
-    overlay = document.querySelector('.js-overlay-modal'),
     closeButtons = document.querySelectorAll('.js-modal-close');
 
 
