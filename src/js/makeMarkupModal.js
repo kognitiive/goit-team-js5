@@ -3,8 +3,8 @@ import * as basicLightbox from 'basiclightbox';
 import modalCard from '../templates/modal.hbs';
 
 const galleryRef = document.querySelector('.film_list');
-const backdrop = document.querySelector('.');
-const modalBtnClose = document.querySelector()
+const backdrop = document.querySelector('.window-backdrop');
+const modalBtnClose = document.querySelector('.js-modal-close');
   galleryRef.addEventListener('click', openModal);
 
 async  function makeMarkupModal(id) {
@@ -28,6 +28,17 @@ const instance = basicLightbox.create(document.querySelector('#modal-window'),
 });
 instance.show();
 
+async function openModal(e) {
+  e.preventDefault();
+  const modal = document.querySelector('.window-backdrop')
+
+  const data = await makeMarkupModal(e.target.dataset.id)
+  const markup = modalCard(data);
+  modal.innerHTML = ''
+  modal.classList.add('active');
+  modal.insertAdjacentHTML('beforeend', markup)
+}
+
 function onEscapeButtonClick(e) {
   if (e.code === 'Escape') {
     backdrop.classList.remove('.active');
@@ -41,17 +52,6 @@ function onBackDropClick(e) {
 function onModalBtnClose(e) {
  backdrop.classList.remove('.active');
   instance.close();
-}
-
-async function openModal(e) {
-  e.preventDefault();
-  const modal = document.querySelector('.js-overlay-modal')
-
-  const data = await makeMarkupModal(e.target.dataset.id)
-  const markup = modalCard(data);
-  modal.innerHTML = ''
-  modal.classList.add('active');
-  modal.insertAdjacentHTML('beforeend', markup)
 }
 
 

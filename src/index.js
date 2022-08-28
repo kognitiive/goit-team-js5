@@ -1,14 +1,12 @@
+import { renderFilms } from './js/renderFilms';
+import fetchFilms from './js/fetchFilms';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import { renderFilms } from './js/renderFilms';
-import fetchFilms from './js/fetchFilms';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination';
 import './js/makeMarkupModal';
-
-
 
 const wraper = document.querySelector('.div');
 
