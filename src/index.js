@@ -1,5 +1,6 @@
-import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
+import { renderFilms } from './js/renderFilms';
+
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';

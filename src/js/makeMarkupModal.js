@@ -12,31 +12,32 @@ async  function makeMarkupModal(id) {
   return {} = data.data;
 }
 
-const instance = basicLightbox.create(document.querySelector('#modal-window'),
-{
+ const instance = basicLightbox.create(document.querySelector('#modal-window'),
+ {
     onShow: () => {
-      backdrop.classList.add('.active');
-      window.addEventListener('keydown', onEscapeButtonClick);
-      backdrop.addEventListener('click', onBackDropClick);
-      modalBtnClose.addEventListener('click', onModalBtnClose)
-    },
-    onClose: () => {
-      window.removeEventListener('keydown', onEscapeButtonClick);
-      backdrop.removeEventListener('click', onBackDropClick);
-      modalBtnClose.removeEventListener('click', onModalBtnClose);
-    }
-});
-instance.show();
+       backdrop.classList.add('.active');
+       window.addEventListener('keydown', onEscapeButtonClick);
+       backdrop.addEventListener('click', onBackDropClick);
+       modalBtnClose.addEventListener('click', onModalBtnClose)
+     },
+     onClose: () => {
+       window.removeEventListener('keydown', onEscapeButtonClick);
+       backdrop.removeEventListener('click', onBackDropClick);
+       modalBtnClose.removeEventListener('click', onModalBtnClose);
+     }
+   });
+
+ instance.show();
 
 async function openModal(e) {
   e.preventDefault();
-  const modal = document.querySelector('.window-backdrop')
+   const modal = document.querySelector('.window-backdrop')
 
   const data = await makeMarkupModal(e.target.dataset.id)
   const markup = modalCard(data);
   modal.innerHTML = ''
-  modal.classList.add('active');
-  modal.insertAdjacentHTML('beforeend', markup)
+   modal.classList.add('active');
+   modal.insertAdjacentHTML('beforeend', markup)
 }
 
 function onEscapeButtonClick(e) {
