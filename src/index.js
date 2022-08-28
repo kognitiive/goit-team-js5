@@ -13,6 +13,7 @@ import { paginat } from './js/pagination'
 
 const wraper = document.querySelector('.div');
 
+
 let currentPage = 1;
 
 
@@ -27,16 +28,10 @@ async function makeMarkup(currentPage) {
 } 
 
 makeMarkup(currentPage).then(r => {
-  const modalButtons = document.querySelectorAll('.js-open-modal')
-  const closeButtons = document.querySelectorAll('.js-modal-close')
-
   const galleryRef = document.querySelector('.film_list')
-  async function onOpenModal() { 
-    const markup = await openModal;
-    const instance = BasicLightbox.create(`${r}`);
-    instance.show()
-  }
   galleryRef.addEventListener('click', openModal);
+  const instance = basicLightbox.create(document.querySelector('#modal-window'))
+  instance.show();
 }
   
 );

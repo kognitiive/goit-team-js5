@@ -1,22 +1,23 @@
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
-import BasicLightbox from 'basiclightbox';
+import * as basicLightbox from 'basiclightbox'
 
 
 export default async function openModal(e) {
   e.preventDefault();
-  console.log(e.target.dataset.id)
-  
+  const modal = document.querySelector('.js-overlay-modal')
+
   const data = await makeMarkupModal(e.target.dataset.id)
-  
-  const markup = modalCard({ data });
-  return markup
-  
+  const markup = modalCard(data);
+  modal.innerHTML = ''
+  modal.classList.add('active');
+  modal.insertAdjacentHTML('beforeend', markup)
+
 //     {
 //       onShow:(instance) => {window.addEventListener('keydown', openInstance)},
 //       onClose:(instance) => {window.removeEventListener('keydown', openInstance)}
 // }
-  return instance.show();
+  
 
   // closeButtons.forEach((item) => item.addEventListener('click', closeModal));
   // function closeModal(e) {
