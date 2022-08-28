@@ -2,7 +2,6 @@ li {
   list-style: none;
 }
 .overlay {
-
   opacity: 0;
   visibility: hidden;
 
@@ -11,14 +10,13 @@ li {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
-  transition: .3s all;
-  @media screen and (min-width: 768px){
+  transition: 0.3s all;
+  @media screen and (min-width: 768px) {
     overflow: scroll;
   }
 }
-
 
 .modal {
   position: absolute;
@@ -41,7 +39,6 @@ li {
 
   @media screen and (min-width: 320px) {
     width: 280px;
-
   }
 
   @media screen and (min-width: 768px) {
@@ -78,15 +75,11 @@ li {
   }
 }
 
-
-
 .modal.active,
 .overlay.active {
   opacity: 1;
   visibility: visible;
 }
-
-
 
 // .modal__cross {
 //   width: 15px;
@@ -99,9 +92,6 @@ li {
 //   background-color: transparent;
 //   border: none;
 // }
-
-
-
 
 .modal-link {
   cursor: pointer;
@@ -136,7 +126,6 @@ li {
   height: auto;
 }
 
-
 // ------текстовая часть
 .wrap-modal {
   display: flex;
@@ -144,7 +133,7 @@ li {
   & ul:not(:last-child) {
     margin-right: 80px;
 
-    @media screen and (min-width: 320px){
+    @media screen and (min-width: 320px) {
       margin-right: 20px;
     }
 
@@ -156,8 +145,6 @@ li {
       margin-right: 80px;
     }
   }
-
-
 }
 
 .content__text {
@@ -193,7 +180,7 @@ li {
 
 .modal__list--values {
   color: inherit;
-padding-left: 0;
+  padding-left: 0;
   & li:nth-child(-n + 2) {
     line-height: 1.16;
   }
@@ -235,7 +222,6 @@ padding-left: 0;
   }
 }
 
-
 .modal-text__title {
   margin-bottom: 10px;
   font-weight: 500;
@@ -254,15 +240,13 @@ padding-left: 0;
 .list-buttons {
   display: flex;
   align-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: row;
   justify-content: center;
 
-
-
-  & li {
-    margin-right: 15px;
-  }
+  // & li {
+  //   margin-right: 15px;
+  // }
 }
 
 .button-modal {
@@ -343,5 +327,10 @@ padding-left: 0;
   &:hover,
   &:focus {
     fill: #ff6b01;
+  }
+}
+.modal-thumb {
+  @media screen and (min-width: 768px) {
+    display: inline-flex;
   }
 }
