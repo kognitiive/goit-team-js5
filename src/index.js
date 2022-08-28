@@ -21,7 +21,7 @@ async function makeMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
   paginat.options.totalItems = films.total_results;
   paginat.options.totalPages = films.total_pages;
-  markup = await renderFilms(films);
+  const markup = await renderFilms(films);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake();
 } 
