@@ -15,6 +15,7 @@ const wraper = document.querySelector('.div');
 
 let currentPage = 1;
 
+
 //Перший рендер
 async function makeMarkup(currentPage) { 
   const films = await fetchFilms(currentPage);
@@ -51,7 +52,7 @@ export async function renderFilmsOnLoadMore() {
 }
 
 
-//----спроба записати інфо в локал сторедж при кліці на картинку фільму 
+//----спроба записати інфо в локал сторедж при кліці на картинку фільму
 // ----та перевірити чи вона вже є в локалі
 //---- код можна буде видалити
 
