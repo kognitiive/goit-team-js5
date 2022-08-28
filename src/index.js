@@ -28,16 +28,45 @@ async function makeMarkup(currentPage) {
   paginat.pagMake();
 }
 
-makeMarkup(currentPage).then(r => {
-  modal()
-});
+makeMarkup(currentPage);
+//   .then(r => {
+//   modal()
+// });
+const backdrop = document.querySelector('.window-backdrop');
+const modalBtnClose = document.querySelector('.js-modal-close');
   const galleryRef = document.querySelector('.film_list')
   galleryRef.addEventListener('click', openModal);
-  const instance = basicLightbox.create(document.querySelector('#modal-window'))
-  instance.show();
-}
+const instance = basicLightbox.create(document.querySelector('#modal-window'),
 
-);
+  {
+    onShow: () => {
+      backdrop.classList.add('.active');
+      window.addEventListener('keydown', onEscapeButtonClick);
+      backdrop.addEventListener('click', onBackDropClick);
+      modalBtnClose.addEventListener('click', onModalBtnClose)
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', onEscapeButtonClick);
+      backdrop.removeEventListener('click', onBackDropClick);
+      modalBtnClose.removeEventListener('click', onModalBtnClose);
+    }
+});
+instance.show();
+
+function onEscapeButtonClick(e) {
+  if (e.code === 'Escape') {
+    backdrop.classList.remove('.active');
+          instance.close();
+        }
+}
+function onBackDropClick(e) {
+  backdrop.classList.remove('.active');
+  instance.close();
+}
+function onModalBtnClose(e) {
+ backdrop.classList.remove('.active');
+  instance.close();
+}
 
 
 //Рендер при пошуку
