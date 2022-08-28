@@ -3,6 +3,8 @@ import * as basicLightbox from 'basiclightbox';
 import modalCard from '../templates/modal.hbs';
 
 const galleryRef = document.querySelector('.film_list');
+const backdrop = document.querySelector('.');
+const modalBtnClose = document.querySelector()
   galleryRef.addEventListener('click', openModal);
 
 async  function makeMarkupModal(id) {
@@ -10,8 +12,36 @@ async  function makeMarkupModal(id) {
   return {} = data.data;
 }
 
-const instance = basicLightbox.create(document.querySelector('#modal-window'));
+const instance = basicLightbox.create(document.querySelector('#modal-window'),
+{
+    onShow: () => {
+      backdrop.classList.add('.active');
+      window.addEventListener('keydown', onEscapeButtonClick);
+      backdrop.addEventListener('click', onBackDropClick);
+      modalBtnClose.addEventListener('click', onModalBtnClose)
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', onEscapeButtonClick);
+      backdrop.removeEventListener('click', onBackDropClick);
+      modalBtnClose.removeEventListener('click', onModalBtnClose);
+    }
+});
 instance.show();
+
+function onEscapeButtonClick(e) {
+  if (e.code === 'Escape') {
+    backdrop.classList.remove('.active');
+          instance.close();
+        }
+}
+function onBackDropClick(e) {
+  backdrop.classList.remove('.active');
+  instance.close();
+}
+function onModalBtnClose(e) {
+ backdrop.classList.remove('.active');
+  instance.close();
+}
 
 async function openModal(e) {
   e.preventDefault();
