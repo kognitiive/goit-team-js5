@@ -36,9 +36,10 @@ galleryRef.addEventListener('click', openModal);
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
     onShow: (instance) => {
-      
-        const backdrop = document.querySelector('.js-overlay-modal');
-        backdrop.classList.add('active');
+      instance.element().querySelector('.js-overlay-modal').onclick = backdrop
+        // const backdrop = document.querySelector('.js-overlay-modal');
+        // backdrop.classList.add('active')
+        instance.element().querySelector('.js-modal-close').onclick = instance.close
         const modalBtnClose = document.querySelector('.js-modal-close');
       
       window.addEventListener('keydown', onEscapeButtonClick);
