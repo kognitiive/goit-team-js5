@@ -34,7 +34,7 @@ export default function modal () {
 
     /* Записываем в переменные массив элементов-кнопок и подложку.
         Подложке зададим id, чтобы не влиять на другие элементы с классом overlay*/
-    var modalButtons = document.querySelectorAll('.js-open-modal'),
+    const modalButtons = document.querySelectorAll('.js-open-modal'),
       overlay = document.querySelector('.js-overlay-modal'),
       closeButtons = document.querySelectorAll('.js-modal-close');
 
@@ -55,7 +55,7 @@ export default function modal () {
 
         /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
               и будем искать модальное окно с таким же атрибутом. */
-        var modalId = this.getAttribute('data-modal'),
+        const modalId = this.getAttribute('data-modal'),
         modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
 
         /* После того как нашли нужное модальное окно, добавим классы
@@ -77,7 +77,7 @@ export default function modal () {
     document.body.addEventListener(
       'keyup',
       function (e) {
-        var key = e.keyCode;
+        const key = e.keyCode;
 
         if (key == 27) {
           document.querySelector('.modal.active').classList.remove('active');
