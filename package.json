@@ -25,6 +25,7 @@
     "@parcel/transformer-sass": "^2.6.0",
     "axios": "^0.27.2",
     "basiclightbox": "^5.0.4",
+    "debounce": "^1.2.1",
     "notiflix": "^3.2.5",
     "parcel": "^2.6.0",
     "parcel-plugin-handlebars-precompile": "^1.0.2",

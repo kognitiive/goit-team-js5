@@ -1,99 +1,35 @@
-import templateFunction from './templates/card.hbs';
-import { fetchGenres } from './js/fetchGenres';
 import axios from 'axios';
-const wraper = document.querySelector('.div');
 import Notiflix from 'notiflix';
+import debounce from 'lodash.debounce';
+import { BasicLightBox } from 'basiclightbox';
+
+import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
 import modal from './js/modal.js';
-import { searchKeyword } from './js/apiSearchKeyword';
+import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
 
-// console.log(templateFunction({
-//   cards: [
-//     "Yehuda Katz",
-//     "Alan Johnson",
-//     "Charles Jolley",
-//   ],
-// }));
+
+const wraper = document.querySelector('.div');
+
 let currentPage = 1;
 
-export async function renderFilms() {
+//Перший рендер
+async function makeMarkup(currentPage) { 
   const films = await fetchFilms(currentPage);
-  try {
-    const render = films.results.map(item => {
-      return getUser(item);
-    });
-    paginat.options.totalItems = films.total_results;
-    paginat.options.totalPages = films.total_pages;
-    console.log(render)
-    const markup = templateFunction({
-      cards: [
-        ...render
-      ]
-    })
-    wraper.insertAdjacentHTML('beforeend', markup);
-    paginat.pagMake();
-  }
-  catch {
-    console.error(error);
-    Notiflix.Notify.failure('There is something wrong');
-  }
-}
+  paginat.options.totalItems = films.total_results;
+  paginat.options.totalPages = films.total_pages;
+  markup = await renderFilms(films);
+  wraper.insertAdjacentHTML('beforeend', markup);
+  paginat.pagMake();
+} 
 
-renderFilms().then(r => {
-  modal()
-})
+makeMarkup(currentPage).then(r => modal());
 
-function getUser(item) {
-  //    const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=28f59146d010acf01a886226973a360d');
-  //    // console.log(response)
-  //     const card = response.data.results[1]
-  //     // console.log(card)
-  const { poster_path, title, release_date, vote_average, genre_ids, id } = item;
-  let raiting = vote_average.toFixed(1)
-  let year = release_date.slice(0, 4);
-  let newGenre = fetchGenres(genre_ids);
-  return { poster_path, title, year, raiting, newGenre, id }
-}
-
-import debounce from 'lodash.debounce';
-
+//Рендер при пошуку
 const input = document.querySelector('.input')
-input.addEventListener('input', debounce(onInputForm, 1000))
-
-function onInputForm(e) {
-  e.preventDefault()
-  const searchText = input.value.trim()
-  if (!searchText) {
-    return
-  }
-  async function renderFilmsSearchKeyword() {
-    const films = await searchKeyword(searchText);
-    if (films.length === 0) {
-     return Notiflix.Notify.info('Oops, there is no film with that name');
-      
-    }
-    if (searchText.length < 3) {
-      return Notiflix.Notify.info('Please enter at least 3 letters');
-    }
-    try {
-      const render = films.map(item => { return getUser(item) });
-      const markup = templateFunction({
-        cards: [
-          ...render
-        ]
-      })
-      wraper.innerHTML = '';
-      wraper.insertAdjacentHTML('beforeend', markup);
-    }
-    catch {
-      console.error(error);
-      Notiflix.Notify.failure('There is something wrong');
-    }
-  }
-  renderFilmsSearchKeyword()
-}
+input.addEventListener('input', debounce(renderFilmsSearchKeyword, 1000))
 
 
 // функція гернерує 2 і наступні сторінки
