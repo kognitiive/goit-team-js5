@@ -7,7 +7,7 @@ import renderFilms from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
 import openModal from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
-import { modalGoIT } from './js/modal-go-it';
+import modalGoIT from './js/modal-go-it';
 import { paginat } from './js/pagination'
 import './js/top-button'
 
@@ -18,14 +18,14 @@ let currentPage = 1;
 
 
 //Перший рендер
-async function makeMarkup(currentPage) { 
+async function makeMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
   paginat.options.totalItems = films.total_results;
   paginat.options.totalPages = films.total_pages;
   const markup = await renderFilms(films);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake();
-} 
+}
 
 makeMarkup(currentPage).then(r => {
   const galleryRef = document.querySelector('.film_list')
@@ -74,20 +74,20 @@ function addToLocalStorage(event) {
     src: event.target.src,
     alt: event.target.alt
   }
-  if (localStorage.getItem("chooseFilmsArray") === null){
+  if (localStorage.getItem("chooseFilmsArray") === null) {
     console.log('Локалсторидж пустий, пушимо інфо...')
     chooseFilmsArray.push(chooseFilm)
     localStorage.setItem("chooseFilmsArray", JSON.stringify(chooseFilmsArray))
-  } else{
+  } else {
     console.log(localStorage.getItem("chooseFilmsArray"))
     infoInLocal = JSON.parse(localStorage.getItem("chooseFilmsArray"))
     const audit = infoInLocal.find((arr) => arr.alt === event.target.alt)
     console.log(audit)
-    if(audit){
+    if (audit) {
       console.log('Такий фільм вже є...')
     } else {
       chooseFilmsArray.push(chooseFilm)
       localStorage.setItem("chooseFilmsArray", JSON.stringify(chooseFilmsArray))
     }
   }
-  }
+}
