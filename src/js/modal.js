@@ -1,8 +1,8 @@
 
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
-import basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
+// import basicLightbox from 'basiclightbox';
+// import 'basiclightbox/dist/basicLightbox.min.css';
 
 const modalWindow = document.querySelector('.modal__content');
 
