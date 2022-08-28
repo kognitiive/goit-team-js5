@@ -64,21 +64,18 @@ input.addEventListener('input', debounce(onInputForm, 1000))
 
 function onInputForm(e) {
   e.preventDefault()
-  wraper.innerHTML = '';
   const searchText = input.value.trim()
   if (!searchText) {
-    renderFilms()
     return
   }
   async function renderFilmsSearchKeyword() {
     const films = await searchKeyword(searchText);
     if (films.length === 0) {
-      Notiflix.Notify.info('Oops, there is no film with that name');
-      renderFilms()
+     return Notiflix.Notify.info('Oops, there is no film with that name');
+      
     }
     if (searchText.length < 3) {
-      Notiflix.Notify.info('Please enter at least 3 letters');
-      renderFilms()
+      return Notiflix.Notify.info('Please enter at least 3 letters');
     }
     try {
       const render = films.map(item => { return getUser(item) });
@@ -87,6 +84,7 @@ function onInputForm(e) {
           ...render
         ]
       })
+      wraper.innerHTML = '';
       wraper.insertAdjacentHTML('beforeend', markup);
     }
     catch {
