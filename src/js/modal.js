@@ -1,8 +1,31 @@
-// import modalCard from '../templates/modal.hbs';
-// import makeMarkupModal from './makeMarkupModal';
+import modalCard from '../templates/modal.hbs';
+import makeMarkupModal from './makeMarkupModal';
+import * as basicLightbox from 'basiclightbox'
 
 
-// export default function modal () {
+export default async function openModal(e) {
+  e.preventDefault();
+  const modal = document.querySelector('.js-overlay-modal')
+
+  const data = await makeMarkupModal(e.target.dataset.id)
+  const markup = modalCard(data);
+  modal.innerHTML = ''
+  modal.classList.add('active');
+  modal.insertAdjacentHTML('beforeend', markup)
+
+//     {
+//       onShow:(instance) => {window.addEventListener('keydown', openInstance)},
+//       onClose:(instance) => {window.removeEventListener('keydown', openInstance)}
+// }
+  
+
+  // closeButtons.forEach((item) => item.addEventListener('click', closeModal));
+  // function closeModal(e) {
+  // modal.close();
+  //     };
+}
+
+// function modal () {
 
 //   !function (e) { "function" != typeof e.matches && (e.matches = e.msMatchesSelector || e.mozMatchesSelector || e.webkitMatchesSelector || function (e) { for (var t = this, o = (t.document || t.ownerDocument).querySelectorAll(e), n = 0; o[n] && o[n] !== t;)++n; return Boolean(o[n]) }), "function" != typeof e.closest && (e.closest = function (e) { for (var t = this; t && 1 === t.nodeType;) { if (t.matches(e)) return t; t = t.parentNode } return null }) }(window.Element.prototype);
 //   // import modal from './templates/modal.hbs';
@@ -66,6 +89,41 @@
 //       document.querySelector('.modal.active').classList.remove('active');
 //       this.classList.remove('active');
 //     });
+//}
+
+//         /* После того как нашли нужное модальное окно, добавим классы
+//               подложке и окну чтобы показать их. */
+//         modalElem.classList.add('active');
+//         overlay.classList.add('active');
+//       }); // end click
+//     }); // end foreach
+
+//     closeButtons.forEach(function (item) {
+//       item.addEventListener('click', function (e) {
+//         var parentModal = this.closest('.modal');
+
+//         parentModal.classList.remove('active');
+//         overlay.classList.remove('active');
+//       });
+//     }); // end foreach
+
+//     document.body.addEventListener(
+//       'keyup',
+//       function (e) {
+//         const key = e.keyCode;
+
+//         if (key == 27) {
+//           document.querySelector('.modal.active').classList.remove('active');
+//           document.querySelector('.overlay.active').classList.remove('active');
+//         }
+//       },
+//       false
+//     );
+
+//     overlay.addEventListener('click', function () {
+//       document.querySelector('.modal.active').classList.remove('active');
+//       this.classList.remove('active');
+//     });
 // }
 // Функция закрытия модалки по эскейпу
 // function onKeyPress(event) {
@@ -87,4 +145,3 @@
 // function onBtnCloseModalClick() {
 //   backdropEl.classList.add('is-hidden');
 //   window.removeEventListener('keydown', onKeyPress);
-// }
