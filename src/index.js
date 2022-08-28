@@ -9,7 +9,7 @@ import openModal from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
-
+import './js/top-button'
 
 const wraper = document.querySelector('.div');
 
