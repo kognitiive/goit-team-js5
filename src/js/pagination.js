@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.min.css';
 import Notiflix from 'notiflix';
 import { onLoadMore, renderFilms } from '../index';
 import { renderFilmsOnLoadMore } from '../index';
@@ -65,10 +66,10 @@ export const paginat = {
         '</a>',
     },
   },
-  pagMake: function () {
-    const pagination = new Pagination(this.contain, this.options);
+  pagMake: function (funcRender) {
+    const pagination = new Pagination(paginat.contain, paginat.options);
     console.log(
-      'tI / tP:',
+      'totalItems / totalPages:',
       this.options.totalItems,
       '/',
       this.options.totalPages
@@ -78,25 +79,31 @@ export const paginat = {
       // інакше прибираємо is-hidden
       this.contain.classList.remove('is-hidden');
     }
+    if (this.options.totalItems <= this.options.itemsPerPage) {
+      //якщо всі елементи вміщаються на одній сторінці, то паг-ція не потрібна
+      this.contain.classList.add('is-hidden');
+      return;
+    }
     hidefirstAndLastPages(1, this.options.totalPages);
-    Notiflix.Loading.dots('Loading...'); 
+    Notiflix.Loading.dots('Loading...');
     Notiflix.Loading.remove(350);
     pagination.on('afterMove', event => {
       Notiflix.Loading.dots('Loading...');
       this.currentPage = event.page;
-
-      renderFilmsOnLoadMore();
+      funcRender();
+      // renderFilmsOnLoadMore();
       Notiflix.Loading.remove(350);
       hidefirstAndLastPages(event.page, this.options.totalPages);
     });
+    pagination.reset();
   },
 
   pagUnsubscribe: function () {
-    pagination.off('afterMove', pagMake);
+    this.pagination.off('afterMove', this.pagMake);
   },
   // або ця, здається працюють обидві, хоча pagination.off не знайшов в документації
   pagReset: function () {
-    pagination.reset(pagMake);
+    this.pagination.reset();
   },
 };
 // paginat.pagMake();
@@ -116,3 +123,5 @@ function hidefirstAndLastPages(page, totalPage) {
     document.querySelector('.tui-last').classList.add('is-hidden');
   }
 }
+
+
