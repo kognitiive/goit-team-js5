@@ -76,6 +76,10 @@ function onInputForm(e) {
       Notiflix.Notify.info('Oops, there is no film with that name');
       renderFilms()
     }
+    if (searchText.length < 3) {
+      Notiflix.Notify.info('Please enter at least 3 letters');
+      renderFilms()
+    }
     try {
       const render = films.map(item => { return getUser(item) });
       const markup = templateFunction({
