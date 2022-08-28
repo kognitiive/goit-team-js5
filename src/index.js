@@ -5,7 +5,7 @@ import { BasicLightBox } from 'basiclightbox';
 
 import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
-import modal from './js/modal.js';
+import { modal } from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
