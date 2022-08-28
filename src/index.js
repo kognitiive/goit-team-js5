@@ -1,11 +1,11 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import { BasicLightBox } from 'basiclightbox';
+import BasicLightBox  from 'basiclightbox';
 
 import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
-import modal from './js/modal.js';
+import openModal from './js/modal'
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
@@ -26,7 +26,15 @@ async function makeMarkup(currentPage) {
   paginat.pagMake();
 } 
 
-makeMarkup(currentPage).then(r => modal());
+makeMarkup(currentPage).then(r => {
+  const modalButtons = document.querySelectorAll('.js-open-modal')
+  const closeButtons = document.querySelectorAll('.js-modal-close')
+
+  const galleryRef = document.querySelector('.film_list')
+  galleryRef.addEventListener('click', openModal);
+}
+  
+);
 
 //Рендер при пошуку
 const input = document.querySelector('.input')
