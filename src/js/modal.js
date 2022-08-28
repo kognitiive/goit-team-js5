@@ -1,6 +1,5 @@
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
-import * as basicLightbox from 'basiclightbox'
 
 
 export default async function openModal(e) {
