@@ -11,7 +11,7 @@ export default async function openModal(e) {
   
   const markup = modalCard({ data });
   return markup
-  const instance = BasicLightbox.create(`markup`)
+  
 //     {
 //       onShow:(instance) => {window.addEventListener('keydown', openInstance)},
 //       onClose:(instance) => {window.removeEventListener('keydown', openInstance)}

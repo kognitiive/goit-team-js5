@@ -5,7 +5,7 @@ import BasicLightBox  from 'basiclightbox';
 
 import { renderFilms } from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
-// import modal from './js/modal.js';
+import openModal from './js/modal.js';
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
@@ -31,6 +31,11 @@ makeMarkup(currentPage).then(r => {
   const closeButtons = document.querySelectorAll('.js-modal-close')
 
   const galleryRef = document.querySelector('.film_list')
+  async function onOpenModal() { 
+    const markup = await openModal;
+    const instance = BasicLightbox.create(`${r}`);
+    instance.show()
+  }
   galleryRef.addEventListener('click', openModal);
 }
   
