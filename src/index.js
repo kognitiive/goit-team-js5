@@ -11,22 +11,25 @@ import { modalGoIT } from './js/modal-go-it';
 import { paginat } from './js/pagination'
 
 
+
 const wraper = document.querySelector('.div');
 
 let currentPage = 1;
 
 
 //Перший рендер
-async function makeMarkup(currentPage) { 
+async function makeMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
   paginat.options.totalItems = films.total_results;
   paginat.options.totalPages = films.total_pages;
   markup = await renderFilms(films);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake();
-} 
+}
 
-makeMarkup(currentPage).then(r => modal());
+makeMarkup(currentPage).then(r => {
+  modal()
+});
 
 //Рендер при пошуку
 const input = document.querySelector('.input')
