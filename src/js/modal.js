@@ -4,12 +4,12 @@ import makeMarkupModal from './makeMarkupModal';
 
 export default async function openModal(e) {
   e.preventDefault();
-  const modal = document.querySelector('.js-overlay-modal')
+  // const modal = document.querySelector('.js-overlay-modal')
 
   const data = await makeMarkupModal(e.target.dataset.id)
   const markup = modalCard(data);
   modal.innerHTML = ''
-  modal.classList.add('active');
+  // modal.classList.add('active');
   modal.insertAdjacentHTML('beforeend', markup)
 
 //     {
