@@ -12,6 +12,7 @@ import modalGoIT from './js/modal-go-it';
 import { paginat } from './js/pagination'
 import './js/top-button'
 
+
 const wraper = document.querySelector('.div');
 
 
@@ -19,6 +20,7 @@ let currentPage = 1;
 
 
 //Перший рендер
+
 async function makeFirstMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
   paginat.options.totalItems = films.total_results;
@@ -28,15 +30,46 @@ async function makeFirstMarkup(currentPage) {
   paginat.pagMake();
 }
 
-//Вмикаємо модалки
-makeFirstMarkup(currentPage).then(r => {
+makeFirstMarkup(currentPage);
+//   .then(r => {
+//   modal()
+// });
+const backdrop = document.querySelector('.window-backdrop');
+const modalBtnClose = document.querySelector('.js-modal-close');
   const galleryRef = document.querySelector('.film_list')
   galleryRef.addEventListener('click', openModal);
-  const instance = basicLightBox.create(document.querySelector('#modal-window'))
-  instance.show();
+const instance = basicLightbox.create(document.querySelector('#modal-window'),
+
+  {
+    onShow: () => {
+      backdrop.classList.add('.active');
+      window.addEventListener('keydown', onEscapeButtonClick);
+      backdrop.addEventListener('click', onBackDropClick);
+      modalBtnClose.addEventListener('click', onModalBtnClose)
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', onEscapeButtonClick);
+      backdrop.removeEventListener('click', onBackDropClick);
+      modalBtnClose.removeEventListener('click', onModalBtnClose);
+    }
+});
+instance.show();
+
+function onEscapeButtonClick(e) {
+  if (e.code === 'Escape') {
+    backdrop.classList.remove('.active');
+          instance.close();
+        }
 }
-  
-);
+function onBackDropClick(e) {
+  backdrop.classList.remove('.active');
+  instance.close();
+}
+function onModalBtnClose(e) {
+ backdrop.classList.remove('.active');
+  instance.close();
+}
+
 
 //Рендер при пошуку
 const input = document.querySelector('#search-box')
