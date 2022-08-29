@@ -232,4 +232,8 @@
     display: flex;
     justify-content: flex-end;
 
+    &:hover,
+    &:focus {
+        color: #ff001b;
+    }
 }

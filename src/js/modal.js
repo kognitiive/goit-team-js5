@@ -49,7 +49,7 @@ export default async function openModal(e) {
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-      const idCard = modal.firstElementChild.firstElementChild.dataset.action;
+      const idCard = modal.firstElementChild.dataset.action;
           
           console.log(event.target.textContent)
           if(event.target.id === 'watchedInModal'){
@@ -90,7 +90,6 @@ export default async function openModal(e) {
               btnQ.textContent = "DELETE OF QUEUE"
               queueFilmsArray.push(data)
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-              infoInLocalQueue = JSON.parse(localStorage.getItem("queueFilmsArray"))
             }
             
           }
