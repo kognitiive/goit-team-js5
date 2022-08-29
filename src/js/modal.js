@@ -50,7 +50,6 @@ export default async function openModal(e) {
             }
           }
 
-
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
 
 // -------- Код додавання обраних фільмів в локал сторидж ------
