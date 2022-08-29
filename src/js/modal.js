@@ -17,17 +17,31 @@ export default async function openModal(e) {
   // modal.classList.add('active');
   backdrop.insertAdjacentHTML('beforeend', markup)
   const btnW = document.querySelector('#watchedInModal')
+  const btnQ = document.querySelector('#queueInModal')
   const modalBtnClose = document.querySelector('.js-modal-close');
   const modal = document.querySelector('.modal')
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
       onShow: (instance) => {
-        const filter = JSON.parse(localStorage.getItem('watchedFilmsArray'));
-  for (let i = 0; i < filter.length; i++){
-    if (filter[i].id === Number(e.target.dataset.id)) {
-      btnW.textContent= "DELETE OF WATCHED";
-    }
-      };
+          const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+          const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
+
+          if(filterWatched !== null){
+            for (let i = 0; i < filterWatched.length; i+=1){
+              if (filterWatched[i].id === Number(e.target.dataset.id)) {
+                btnW.textContent= "DELETE OF WATCHED";
+              };
+          }
+          }
+          
+          if(filterQueue !== null){
+            for (let i = 0; i < filterQueue.length; i+=1){
+              if (filterQueue[i].id === Number(e.target.dataset.id)) {
+                btnQ.textContent= "DELETE OF QUEUE";
+              };
+            }
+          }
+        
 
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
 
@@ -35,14 +49,13 @@ export default async function openModal(e) {
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-      const btnW = document.querySelector('#watchedInModal')
-      console.log(btnW)
       const idCard = modal.firstElementChild.firstElementChild.dataset.action;
-          //console.log(idCard)
+          
+          console.log(event.target.textContent)
           if(event.target.id === 'watchedInModal'){
              btnW.textContent = "DELETE OF WATCHED"
              infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
-            console.log(infoInLocalWatched)
+            
             if (infoInLocalWatched === null){
               watchedFilmsArray.push(data)
               localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
@@ -57,6 +70,7 @@ export default async function openModal(e) {
               }
             }
           } else if(event.target.id === 'queueInModal'){
+            btnQ.textContent = "DELETE OF QUEUE"
             infoInLocalQueue = JSON.parse(localStorage.getItem("queueFilmsArray"))
             if (infoInLocalQueue === null){
               queueFilmsArray.push(data)
@@ -72,6 +86,34 @@ export default async function openModal(e) {
             }
 
           }
+          if (event.target.textContent === 'DELETE OF WATCHED'){
+            console.log(filterWatched)
+            if (filterWatched !== null){
+              for (let i = 0; i < filterWatched.length; i+=1){
+                if (filterWatched[i].id === Number(e.target.dataset.id)) {
+                  console.log(i);
+                  watchedFilmsArray.splice(i, 1)
+                  localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
+                  btnW.textContent= "ADD TO WATCHED";
+                };
+            }
+            }
+          }
+          if (event.target.textContent === 'DELETE OF QUEUE'){
+            console.log(filterQueue)
+            if(filterQueue !== null){
+              for (let i = 0; i < filterQueue.length; i+=1){
+                if (filterQueue[i].id === Number(e.target.dataset.id)) {
+                  console.log(i);
+                  queueFilmsArray.splice(i, 1)
+                  localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+                  btnQ.textContent= "ADD TO QUEUE";
+                };
+            }
+            }
+       
+          }
+          
         }
 //-----------
         backdrop.classList.add('active')
