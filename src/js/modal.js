@@ -62,7 +62,7 @@ export default async function openModal(e) {
             } else {
               const audit = infoInLocalWatched.find((arr) => `${arr.id}`=== idCard)
               if (audit) {
-                //btnW.textContent = "DELETE OF WATCHED"
+                btnW.textContent = "DELETE OF WATCHED"
                 console.log('Такий фільм вже є...')
               } else {
                 watchedFilmsArray.push(data)
