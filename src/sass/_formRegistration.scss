@@ -1,10 +1,10 @@
-.modal {
+.modal-registration{
     position: fixed;
     width: 100vw;
     height: 100vh;
     padding: 0;
-    z-index: 99;
-    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 60;
+    background-color: rgba(0, 0, 0, 0.8);  
 }
 
 .regist-form {

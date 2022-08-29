@@ -6,34 +6,28 @@ import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 const formLink = document.querySelector('.header-regist');
 
 formLink.addEventListener('click', openModal)
-
-const instance = basicLightbox.create(
-    `<div class='modal'>
-    <form class='regist-form' autocomplete="off">
-        <h1 class='regist-title'>Please, fill in all fields</h1>
-            <label>
-                <span class="regist-label">Email</span>
-                <input class='regist-input' type="email" name="email" ></input>
-            </label>
-            <label>
-                <span class="regist-label">Password</span>
-                <input class='regist-input' type="text" name="password"></input>
-            </label>
-            <button type='submit' class='regist-btn'>Registration</button>
-    </form>
-    </div>`,
+const modal = document.querySelector('.modal-registration')
+const backdrop = document.querySelector('.window-backdrop')
+const instance = basicLightbox.create(document.querySelector('#template-registr'),
     {
-        onShow: () => {
-
+        onShow: (instance) => {
+            modal.classList.add('active')
+            backdrop.classList.add('active')
             window.addEventListener('keydown', onEscCode)
-            instance.element().querySelector('.modal').onclick = instance.close
+            backdrop.addEventListener('click', onBackdropClose)
+            // instance.element().querySelector('.modal-registration').onclick = instance.close
         },
 
-        onClose: () => {
+        onClose: (instance) => {
+            modal.classList.remove('active')
+            backdrop.classList.remove('active')
             window.removeEventListener('keydown', onEscCode)
+            backdrop.removeEventListener('click', onBackdropClose)
         }
     }
 )
+
+
 
 function openModal(e) {
     e.preventDefault()
@@ -73,12 +67,17 @@ function openModal(e) {
         }
     });
         }
-    return instance.show()
 }
 
 function onEscCode(event) {
     if (event.code === "Escape") {
         instance.close()
         return
+    }
+}
+
+function onBackdropClose(e) {
+    if (e.currentTarget.value === e.target.value) {
+        instance.close()
     }
 }

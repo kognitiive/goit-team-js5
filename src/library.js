@@ -47,10 +47,11 @@ async function makeFirstMarkup(currentPage) {
   // paginat.pagMake(renderFilmsOnLoadMore);
 }
 
-makeFirstMarkup(currentPage).then(r => {
-  const galleryRef = document.querySelector('.film_list')
-  galleryRef.addEventListener('click', openModal);
-});
+makeFirstMarkup(currentPage)
+//   .then(r => {
+//   const galleryRef = document.querySelector('.film_list')
+//   galleryRef.addEventListener('click', openModal);
+// });
 
 
 
