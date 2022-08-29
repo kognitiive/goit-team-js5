@@ -11,10 +11,12 @@ const instance = basicLightbox.create(
         onShow: () => {
             window.addEventListener('keydown', onEscCode)
             instance.element().querySelector('.window-btn').onclick = instance.close
+            refs.backdrop.addEventListener('click', onBackdropClose)
         },
 
         onClose: () => {
             window.removeEventListener('keydown', onEscCode)
+            refs.backdrop.removeEventListener('click', onBackdropClose)
         }
     }
 )
@@ -27,5 +29,10 @@ function onEscCode(event) {
     if (event.code === "Escape") {
         instance.close()
         return
+    }
+}
+function onBackdropClose(e) {
+    if (e.currentTarget.value === e.target.value) {
+        instance.close()
     }
 }
