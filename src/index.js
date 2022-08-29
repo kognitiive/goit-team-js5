@@ -22,9 +22,11 @@ const wraper = document.querySelector('.div');
 //Перший рендер
 async function makeFirstMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
+  console.log(films)
   paginat.options.totalItems = films.total_results;
   paginat.options.totalPages = films.total_pages;
   const markup = await renderFilms(films);
+  console.log(markup);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(renderFilmsOnLoadMore);
 }
@@ -40,7 +42,7 @@ input.addEventListener('input', debounce(makeSearchMarkup, 1000))
 let searchText = '';
 async function makeSearchMarkup(e) {
   e.preventDefault()
-  
+
   const searchText = e.target.value.trim()
   if (!searchText) {
     return
@@ -59,7 +61,7 @@ async function makeSearchMarkup(e) {
 }
 
 // пагінація 2-ї та наспупних сторінок при рендері по пошуку
-async function makeSearchMarkupOnLoadMore(e) { 
+async function makeSearchMarkupOnLoadMore(e) {
   currentPage = paginat.currentPage;
   const films = await searchKeyword(searchText, currentPage);
   const markup = await renderFilmsSearchKeyword(films);
