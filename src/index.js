@@ -11,7 +11,7 @@ import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import modalGoIT from './js/modal-go-it';
 import { paginat } from './js/pagination'
 import './js/top-button'
-
+import { getUser } from './js/getUser';
 
 const wraper = document.querySelector('.div');
 
