@@ -1,17 +1,57 @@
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
+import * as basicLightBox from 'basiclightbox';
 
 
 export default async function openModal(e) {
   e.preventDefault();
-  // const modal = document.querySelector('.js-overlay-modal')
+  const backdrop = document.querySelector('.js-overlay-modal')
 
   const data = await makeMarkupModal(e.target.dataset.id)
   const markup = modalCard(data);
-  modal.innerHTML = ''
+  backdrop.innerHTML = ''
   // modal.classList.add('active');
-  modal.insertAdjacentHTML('beforeend', markup)
+  backdrop.insertAdjacentHTML('beforeend', markup)
+  const modalBtnClose = document.querySelector('.js-modal-close');
+  const modal = document.querySelector('.modal')
+  const instance = basicLightBox.create(document.querySelector('#modal-window'),
+    {
+    onShow: (instance) => {
+      // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
+        
+        backdrop.classList.add('active')
+        modal.classList.add('active')
+        
+      
+      window.addEventListener('keydown', onEscapeButtonClick);
+      backdrop.addEventListener('click', onBackDropClick);
+      modalBtnClose.addEventListener('click', onModalBtnClose)
+    },
+    onClose:  (instance) => {
+      window.removeEventListener('keydown', onEscapeButtonClick);
+      backdrop.removeEventListener('click', onBackDropClick);
+      modalBtnClose.removeEventListener('click', onModalBtnClose);
+      }
+    });
+  function onEscapeButtonClick(e) {
+  if (e.code === 'Escape') {
+    backdrop.classList.remove('active');
+    modal.classList.remove('active')
+          instance.close();
+        }
+}
+function onBackDropClick(e) {
+  backdrop.classList.remove('active');
+  modal.classList.remove('active')
+  instance.close();
+}
+function onModalBtnClose(e) {
+  backdrop.classList.remove('active');
+  modal.classList.remove('active')
+  instance.close();
+}
 
+  instance.show();
 //     {
 //       onShow:(instance) => {window.addEventListener('keydown', openInstance)},
 //       onClose:(instance) => {window.removeEventListener('keydown', openInstance)}

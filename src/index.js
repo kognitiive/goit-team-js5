@@ -33,42 +33,9 @@ async function makeFirstMarkup(currentPage) {
 makeFirstMarkup(currentPage).then(r => {
 const galleryRef = document.querySelector('.film_list')
 galleryRef.addEventListener('click', openModal);
-  const instance = basicLightBox.create(document.querySelector('#modal-window'),
-    {
-    onShow: (instance) => {
-      instance.element().querySelector('.js-overlay-modal').onclick = backdrop
-        // const backdrop = document.querySelector('.js-overlay-modal');
-        // backdrop.classList.add('active')
-        instance.element().querySelector('.js-modal-close').onclick = instance.close
-        const modalBtnClose = document.querySelector('.js-modal-close');
-      
-      window.addEventListener('keydown', onEscapeButtonClick);
-      backdrop.addEventListener('click', onBackDropClick);
-      modalBtnClose.addEventListener('click', onModalBtnClose)
-    },
-    onClose:  (instance) => {
-      window.removeEventListener('keydown', onEscapeButtonClick);
-      backdrop.removeEventListener('click', onBackDropClick);
-      modalBtnClose.removeEventListener('click', onModalBtnClose);
-    }
-});
-instance.show();
+
 });
 
-function onEscapeButtonClick(e) {
-  if (e.code === 'Escape') {
-    backdrop.classList.remove('active');
-          instance.close();
-        }
-}
-function onBackDropClick(e) {
-  backdrop.classList.remove('active');
-  instance.close();
-}
-function onModalBtnClose(e) {
- backdrop.classList.remove('active');
-  instance.close();
-}
 
 
 //Рендер при пошуку
