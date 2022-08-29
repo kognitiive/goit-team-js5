@@ -7,7 +7,6 @@ const watchedFilmsArray = [];
 const queueFilmsArray = [];
 //---------
 
-
 export default async function openModal(e) {
   e.preventDefault();
   const backdrop = document.querySelector('.js-overlay-modal')
@@ -17,11 +16,18 @@ export default async function openModal(e) {
   backdrop.innerHTML = ''
   // modal.classList.add('active');
   backdrop.insertAdjacentHTML('beforeend', markup)
+  const btnW = document.querySelector('#watchedInModal')
   const modalBtnClose = document.querySelector('.js-modal-close');
   const modal = document.querySelector('.modal')
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
-    onShow: (instance) => {
+      onShow: (instance) => {
+        const filter = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+  for (let i = 0; i < filter.length; i++){
+    if (filter[i].id === Number(e.target.dataset.id)) {
+      btnW.textContent= "DELETE OF WATCHED";
+    }
+      };
 
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
 
@@ -29,14 +35,14 @@ export default async function openModal(e) {
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-          const btnW = document.querySelector('#watchedInModal')
-          console.log(btnW)
-          const idCard = modal.firstElementChild.firstElementChild.dataset.action
+      const btnW = document.querySelector('#watchedInModal')
+      console.log(btnW)
+      const idCard = modal.firstElementChild.firstElementChild.dataset.action;
           //console.log(idCard)
           if(event.target.id === 'watchedInModal'){
-            btnW.textContent = "DELETE OF WATCHED"
-            infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
-            //console.log(infoInLocalWatched)
+             btnW.textContent = "DELETE OF WATCHED"
+             infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
+            console.log(infoInLocalWatched)
             if (infoInLocalWatched === null){
               watchedFilmsArray.push(data)
               localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
@@ -64,13 +70,13 @@ export default async function openModal(e) {
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
               }
             }
-            
+
           }
         }
 //-----------
         backdrop.classList.add('active')
         modal.classList.add('active')
-     
+
       window.addEventListener('keydown', onEscapeButtonClick);
       backdrop.addEventListener('click', onBackDropClick);
       modalBtnClose.addEventListener('click', onModalBtnClose)
@@ -104,12 +110,14 @@ function onModalBtnClose(e) {
 //       onShow:(instance) => {window.addEventListener('keydown', openInstance)},
 //       onClose:(instance) => {window.removeEventListener('keydown', openInstance)}
 // }
-  
+
 
   // closeButtons.forEach((item) => item.addEventListener('click', closeModal));
   // function closeModal(e) {
   // modal.close();
   //     };
+
+
 }
 
 // function modal () {
