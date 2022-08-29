@@ -1,44 +1,44 @@
 .header {
     height: 230px;
-    
+
     @media screen and (min-width: 768px) {
-            height: 216px;
-        }
+        height: 216px;
+    }
 }
 
 .header__home {
     background-image: url(../images/header/home/desk-bg@1x.webp);
-        background-size:cover;
-        background-position-x: center;
-        background-color: black;
-    
+    background-size: cover;
+    background-position-x: center;
+    background-color: black;
+
+    @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+        background-image: linear-gradient(rgba(47, 48, 58, 0.4),
+                rgba(47, 48, 58, 0.4)),
+            url(../images/header/home/desk-bg@2x.webp);
+    }
+
+    @media screen and (max-width: 768px) {
+        background-image: url(../images/header/home/tab-bg@1x.webp);
+
         @media screen and (min-device-pixel-ratio: 2),
         screen and (min-resolution: 192dpi),
         screen and (min-resolution: 2dppx) {
-            background-image: linear-gradient(rgba(47, 48, 58, 0.4),
-                    rgba(47, 48, 58, 0.4)),
-                url(../images/header/home/desk-bg@2x.webp);
+            background-image: url(../images/header/home/tab-bg@2x.webp);
         }
-    
-        @media screen and (max-width: 768px) {
-            background-image: url(../images/header/home/tab-bg@1x.webp);
-    
-            @media screen and (min-device-pixel-ratio: 2),
-            screen and (min-resolution: 192dpi),
-            screen and (min-resolution: 2dppx) {
-                background-image: url(../images/header/home/tab-bg@2x.webp);
-            }
+    }
+
+    @media screen and (max-width: 480px) {
+        background-image: url(../images/header/home/mob-bg@1x.webp);
+
+        @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+            background-image: url(../images/header/home/mob-bg@2x.webp);
         }
-    
-        @media screen and (max-width: 480px) {
-            background-image: url(../images/header/home/mob-bg@1x.webp);
-    
-            @media screen and (min-device-pixel-ratio: 2),
-            screen and (min-resolution: 192dpi),
-            screen and (min-resolution: 2dppx) {
-                background-image: url(../images/header/home/mob-bg@2x.webp);
-            }
-        }
+    }
 }
 
 .header__library {
@@ -78,26 +78,29 @@
 .header__container {
     display: flex;
     align-items: center;
-    padding-top:  40px;
+    padding-top: 40px;
 }
 
-.logo, .home, .library{
+.logo,
+.home,
+.library {
     transition-property: color;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
-        &:focus {
-            color: #FF001B;
-        }
+    &:focus {
+        color: #FF001B;
+    }
 }
 
 .logo__icon {
+
     &:hover .logo__svg,
-        &:focus .logo__svg {
-            color: #FF001B;
-            fill: #FF001B;
-        }
+    &:focus .logo__svg {
+        color: #FF001B;
+        fill: #FF001B;
+    }
 }
 
 .logo__svg {
@@ -125,9 +128,10 @@
     font-weight: 500;
     font-size: 30px;
     line-height: 35px;
+
     @media screen and (max-width: 767px) {
-            display: none;
-        }
+        display: none;
+    }
 }
 
 .home {
@@ -169,19 +173,20 @@
     margin-left: auto;
     margin-right: auto;
     border-bottom: 0.5px solid $first-color;
+
     @media screen and (max-width: 767px) {
-            margin-top: 56px;
-            width: 280px;
-        }
-    
-        @media screen and (min-width: 768px) {
-            margin-top: 40px;
-            width: 336px;
-        }
-    
-        @media screen and (min-width: 1200px) {
-            width: 394px;
-        }
+        margin-top: 56px;
+        width: 280px;
+    }
+
+    @media screen and (min-width: 768px) {
+        margin-top: 40px;
+        width: 336px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 394px;
+    }
 }
 
 .input {
@@ -192,7 +197,7 @@
     padding: 4px;
 }
 
- ::placeholder {
+::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
@@ -219,6 +224,12 @@
     margin-right: 20px;
 
     @media screen and (min-width: 768px) {
-            margin-right: 32px;
-        }
+        margin-right: 32px;
+    }
+}
+
+.header-regist {
+    display: flex;
+    justify-content: flex-end;
+
 }

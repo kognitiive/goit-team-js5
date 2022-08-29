@@ -17,11 +17,13 @@ export default async function openModal(e) {
   // modal.classList.add('active');
   backdrop.insertAdjacentHTML('beforeend', markup)
   const btnW = document.querySelector('#watchedInModal')
+  const btnQ = document.querySelector('#queueInModal')
   const modalBtnClose = document.querySelector('.js-modal-close');
   const modal = document.querySelector('.modal')
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
       onShow: (instance) => {
+
          const filter = JSON.parse(localStorage.getItem('watchedFilmsArray'));
    for (let i = 0; i < filter.length; i++){
      if (filter[i].id === Number(e.target.dataset.id)) {
@@ -29,46 +31,73 @@ export default async function openModal(e) {
      }
        };
 
+          const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+          const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
+
+          if(filterWatched !== null){
+            for (let i = 0; i < filterWatched.length; i+=1){
+              if (filterWatched[i].id === Number(e.target.dataset.id)) {
+                btnW.textContent= "DELETE OF WATCHED";
+              };
+          }
+          }
+
+          if(filterQueue !== null){
+            for (let i = 0; i < filterQueue.length; i+=1){
+              if (filterQueue[i].id === Number(e.target.dataset.id)) {
+                btnQ.textContent= "DELETE OF QUEUE";
+              };
+            }
+          }
+
+
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
 
 // -------- Код додавання обраних фільмів в локал сторидж ------
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-      const btnW = document.querySelector('#watchedInModal')
-      console.log(btnW)
-      const idCard = modal.firstElementChild.firstElementChild.dataset.action;
-          //console.log(idCard)
+      const idCard = modal.firstElementChild.dataset.action;
+
+          console.log(event.target.textContent)
           if(event.target.id === 'watchedInModal'){
-             btnW.textContent = "DELETE OF WATCHED"
-             infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
-            console.log(infoInLocalWatched)
-            if (infoInLocalWatched === null){
-              watchedFilmsArray.push(data)
-              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
-            } else {
-              const audit = infoInLocalWatched.find((arr) => `${arr.id}`=== idCard)
-              if (audit) {
-                //btnW.textContent = "DELETE OF WATCHED"
-                console.log('Такий фільм вже є...')
-              } else {
-                watchedFilmsArray.push(data)
-              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
-              }
+            if (event.target.textContent === 'DELETE OF WATCHED'){
+
+              for (let i = 0; i < filterWatched.length; i+=1){
+                if (filterWatched[i].id === Number(e.target.dataset.id)) {
+                  console.log(i);
+                  watchedFilmsArray.splice(i, 1)
+                  localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
+                  btnW.textContent= "ADD TO WATCHED";
+                };
+
             }
-          } else if(event.target.id === 'queueInModal'){
-            infoInLocalQueue = JSON.parse(localStorage.getItem("queueFilmsArray"))
-            if (infoInLocalQueue === null){
+          } else{
+            btnW.textContent = "DELETE OF WATCHED"
+            watchedFilmsArray.push(data)
+            localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
+          }
+
+
+            }
+          else if(event.target.id === 'queueInModal'){
+            if (event.target.textContent === 'DELETE OF QUEUE'){
+              console.log(filterQueue)
+              if(filterQueue !== null){
+                for (let i = 0; i < filterQueue.length; i+=1){
+                  if (filterQueue[i].id === Number(e.target.dataset.id)) {
+                    console.log(i);
+                    queueFilmsArray.splice(i, 1)
+                    localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+                    btnQ.textContent= "ADD TO QUEUE";
+                  };
+              }
+              }
+
+            } else {
+              btnQ.textContent = "DELETE OF QUEUE"
               queueFilmsArray.push(data)
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-            } else {
-              const auditQ = infoInLocalQueue.find((arr) => `${arr.id}`=== idCard)
-              if(auditQ){
-                console.log('Такий фільм вже є...')
-              } else {
-                queueFilmsArray.push(data)
-              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-              }
             }
 
           }

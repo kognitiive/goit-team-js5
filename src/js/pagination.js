@@ -65,7 +65,7 @@ export const paginat = {
         '</a>',
     },
   },
-  pagMake: function () {
+  pagMake: function (funcOnLoadMore) {
     const pagination = new Pagination(this.contain, this.options);
     console.log(
       'tI / tP:',
@@ -85,7 +85,7 @@ export const paginat = {
       Notiflix.Loading.dots('Loading...');
       this.currentPage = event.page;
 
-      renderFilmsOnLoadMore();
+      funcOnLoadMore();
       Notiflix.Loading.remove(350);
       hidefirstAndLastPages(event.page, this.options.totalPages);
     });
