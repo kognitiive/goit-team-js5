@@ -4,11 +4,14 @@ import { getUser } from './js/getUser';
 import renderFilms from './js/renderFilms';
 import fetchFilms from './js/fetchFilms';
 import { paginat } from './js/pagination'
+import openModal from './js/modal'
+
+let currentPage = 1
 
 const btnWatched = document.querySelector("#watched")
 const btnQueue = document.querySelector("#queue")
 const wraper = document.querySelector('.div');
-let currentPage = 1
+
 
 const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
 console.log(filterWatched)
@@ -35,12 +38,13 @@ console.log(filterQueue)
 
 async function makeFirstMarkup(currentPage) {
 
-  const films = await fetchFilms(currentPage);
-  paginat.options.totalItems = films.total_results;
-  paginat.options.totalPages = films.total_pages;
+  const films = filterWatched;
+  if (!films) { return Notiflix.Notify.info("You don't have any films at WATCHED")}
+  // paginat.options.totalItems = films.total_results;
+  // paginat.options.totalPages = films.total_pages;
   const markup = await renderFilms(films);
   wraper.insertAdjacentHTML('beforeend', markup);
-  paginat.pagMake(renderFilmsOnLoadMore);
+  // paginat.pagMake(renderFilmsOnLoadMore);
 }
 
 makeFirstMarkup(currentPage).then(r => {
