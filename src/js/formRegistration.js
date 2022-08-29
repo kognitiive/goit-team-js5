@@ -5,8 +5,7 @@ const formLink = document.querySelector('.header-regist');
 formLink.addEventListener('click', openModal)
 
 const instance = basicLightbox.create(
-    `<div class='registration-backdrop'>
-    <div class='modal'>
+    `<div class='modal'>
     <form class='regist-form' autocomplete="off">
         <h1 class='regist-title'>Please, fill in all fields</h1>
             <label>
@@ -22,19 +21,12 @@ const instance = basicLightbox.create(
     </div>`,
     {
         onShow: () => {
-            refs = {
-                submitBtn: document.querySelector('.regist-btn'),
-                backdrop: document.querySelector('.registration-backdrop'),
-                modal: document.querySelector('.modal')
-             }
+
             window.addEventListener('keydown', onEscCode)
-            refs.modal.classList.add('active')
-            refs.backdrop.classList.add('active')
+            instance.element().querySelector('.modal').onclick = instance.close
         },
 
         onClose: () => {
-            refs.modal.classList.remove('active')
-            refs.backdrop.classList.remove('active')
             window.removeEventListener('keydown', onEscCode)
         }
     }
