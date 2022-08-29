@@ -49,46 +49,12 @@ export default async function openModal(e) {
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-      const idCard = modal.firstElementChild.firstElementChild.dataset.action;
+      const idCard = modal.firstElementChild.dataset.action;
           
           console.log(event.target.textContent)
           if(event.target.id === 'watchedInModal'){
-             btnW.textContent = "DELETE OF WATCHED"
-             infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
+            if (event.target.textContent === 'DELETE OF WATCHED'){
             
-            if (infoInLocalWatched === null){
-              watchedFilmsArray.push(data)
-              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
-            } else {
-              const audit = infoInLocalWatched.find((arr) => `${arr.id}`=== idCard)
-              if (audit) {
-                btnW.textContent = "DELETE OF WATCHED"
-                console.log('Такий фільм вже є...')
-              } else {
-                watchedFilmsArray.push(data)
-              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
-              }
-            }
-          } else if(event.target.id === 'queueInModal'){
-            btnQ.textContent = "DELETE OF QUEUE"
-            infoInLocalQueue = JSON.parse(localStorage.getItem("queueFilmsArray"))
-            if (infoInLocalQueue === null){
-              queueFilmsArray.push(data)
-              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-            } else {
-              const auditQ = infoInLocalQueue.find((arr) => `${arr.id}`=== idCard)
-              if(auditQ){
-                console.log('Такий фільм вже є...')
-              } else {
-                queueFilmsArray.push(data)
-              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-              }
-            }
-
-          }
-          if (event.target.textContent === 'DELETE OF WATCHED'){
-            console.log(filterWatched)
-            if (filterWatched !== null){
               for (let i = 0; i < filterWatched.length; i+=1){
                 if (filterWatched[i].id === Number(e.target.dataset.id)) {
                   console.log(i);
@@ -96,24 +62,37 @@ export default async function openModal(e) {
                   localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
                   btnW.textContent= "ADD TO WATCHED";
                 };
+            
             }
-            }
+          } else{
+            btnW.textContent = "DELETE OF WATCHED"
+            watchedFilmsArray.push(data)
+            localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
           }
-          if (event.target.textContent === 'DELETE OF QUEUE'){
-            console.log(filterQueue)
-            if(filterQueue !== null){
-              for (let i = 0; i < filterQueue.length; i+=1){
-                if (filterQueue[i].id === Number(e.target.dataset.id)) {
-                  console.log(i);
-                  queueFilmsArray.splice(i, 1)
-                  localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
-                  btnQ.textContent= "ADD TO QUEUE";
-                };
-            }
-            }
-       
-          }
+             
           
+            } 
+          else if(event.target.id === 'queueInModal'){
+            if (event.target.textContent === 'DELETE OF QUEUE'){
+              console.log(filterQueue)
+              if(filterQueue !== null){
+                for (let i = 0; i < filterQueue.length; i+=1){
+                  if (filterQueue[i].id === Number(e.target.dataset.id)) {
+                    console.log(i);
+                    queueFilmsArray.splice(i, 1)
+                    localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+                    btnQ.textContent= "ADD TO QUEUE";
+                  };
+              }
+              }
+         
+            } else {
+              btnQ.textContent = "DELETE OF QUEUE"
+              queueFilmsArray.push(data)
+              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+            }
+            
+          }
         }
 //-----------
         backdrop.classList.add('active')
