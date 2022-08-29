@@ -14,12 +14,14 @@ const instance = basicLightbox.create(
             refs.modal.classList.add('active')
             refs.backdrop.classList.add('active')
             instance.element().querySelector('.window-btn').onclick = instance.close
+            refs.backdrop.addEventListener('click', onBackdropClose)
         },
 
         onClose: () => {
             refs.modal.classList.remove('active')
             refs.backdrop.classList.remove('active')
             window.removeEventListener('keydown', onEscCode)
+            refs.backdrop.removeEventListener('click', onBackdropClose)
         }
     }
 )
@@ -32,5 +34,10 @@ function onEscCode(event) {
     if (event.code === "Escape") {
         instance.close()
         return
+    }
+}
+function onBackdropClose(e) {
+    if (e.currentTarget.value === e.target.value) {
+        instance.close()
     }
 }
