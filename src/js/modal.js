@@ -2,6 +2,11 @@ import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
 import * as basicLightBox from 'basiclightbox';
 
+//-------- Масиви для локал сторидж ----
+const watchedFilmsArray = [];
+const queueFilmsArray = [];
+//---------
+
 
 export default async function openModal(e) {
   e.preventDefault();
@@ -17,12 +22,55 @@ export default async function openModal(e) {
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
     onShow: (instance) => {
+
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
-        
+
+// -------- Код додавання обраних фільмів в локал сторидж ------
+    modal.addEventListener('click', addToLocalStorage)
+
+    function addToLocalStorage(event) {
+          const btnW = document.querySelector('#watchedInModal')
+          console.log(btnW)
+          const idCard = modal.firstElementChild.firstElementChild.dataset.action
+          //console.log(idCard)
+          if(event.target.id === 'watchedInModal'){
+            btnW.textContent = "DELETE OF WATCHED"
+            infoInLocalWatched = JSON.parse(localStorage.getItem("watchedFilmsArray"))
+            //console.log(infoInLocalWatched)
+            if (infoInLocalWatched === null){
+              watchedFilmsArray.push(data)
+              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
+            } else {
+              const audit = infoInLocalWatched.find((arr) => `${arr.id}`=== idCard)
+              if (audit) {
+                //btnW.textContent = "DELETE OF WATCHED"
+                console.log('Такий фільм вже є...')
+              } else {
+                watchedFilmsArray.push(data)
+              localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
+              }
+            }
+          } else if(event.target.id === 'queueInModal'){
+            infoInLocalQueue = JSON.parse(localStorage.getItem("queueFilmsArray"))
+            if (infoInLocalQueue === null){
+              queueFilmsArray.push(data)
+              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+            } else {
+              const auditQ = infoInLocalQueue.find((arr) => `${arr.id}`=== idCard)
+              if(auditQ){
+                console.log('Такий фільм вже є...')
+              } else {
+                queueFilmsArray.push(data)
+              localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
+              }
+            }
+            
+          }
+        }
+//-----------
         backdrop.classList.add('active')
         modal.classList.add('active')
-        
-      
+     
       window.addEventListener('keydown', onEscapeButtonClick);
       backdrop.addEventListener('click', onBackDropClick);
       modalBtnClose.addEventListener('click', onModalBtnClose)
