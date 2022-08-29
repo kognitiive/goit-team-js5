@@ -6,7 +6,7 @@ import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 const formLink = document.querySelector('.header-regist');
 
 formLink.addEventListener('click', openModal)
-const modal = document.querySelector('.modal-registration')
+const modal = document.querySelector('.regist-form')
 const backdrop = document.querySelector('.window-backdrop')
 const instance = basicLightbox.create(document.querySelector('#template-registr'),
     {
@@ -77,7 +77,7 @@ function onEscCode(event) {
 }
 
 function onBackdropClose(e) {
-    if (e.currentTarget.value === e.target.value) {
+    if (e.currentTarget === e.target) {
         instance.close()
     }
 }

@@ -37,7 +37,7 @@ function onEscCode(event) {
     }
 }
 function onBackdropClose(e) {
-    if (e.currentTarget.value === e.target.value) {
+    if (e.currentTarget === e.target) {
         instance.close()
     }
 }
