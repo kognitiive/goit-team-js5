@@ -67,12 +67,7 @@ export const paginat = {
   },
   pagMake: function (funcOnLoadMore) {
     const pagination = new Pagination(this.contain, this.options);
-    console.log(
-      'tI / tP:',
-      this.options.totalItems,
-      '/',
-      this.options.totalPages
-    );
+
     if (this.options.totalItems > this.options.itemsPerPage) {
       //якщо всі елементи вміщаються на одній сторінці, то паг-ція не потрібна => включено is-hidden за замовчуванням
       // інакше прибираємо is-hidden
