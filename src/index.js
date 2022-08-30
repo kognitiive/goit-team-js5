@@ -27,12 +27,15 @@ async function makeFirstMarkup(currentPage) {
   const markup = await renderFilms(films);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(renderFilmsOnLoadMore);
-}
 
-makeFirstMarkup(currentPage).then(r => {
-  const galleryRef = document.querySelector('.film_list')
-  galleryRef.addEventListener('click', openModal);
-});
+    const galleryRef = document.querySelector('.film_list')
+   galleryRef.addEventListener('click', openModal);
+}
+makeFirstMarkup(currentPage);
+//   .then(r => {
+//    const galleryRef = document.querySelector('.film_list')
+//    galleryRef.addEventListener('click', openModal);
+//  });
 
 //Рендер при пошуку
 const input = document.querySelector('#search-box')
@@ -56,6 +59,9 @@ async function makeSearchMarkup(e) {
   wraper.innerHTML = '';
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(makeSearchMarkupOnLoadMore);
+
+    const galleryRef = document.querySelector('.film_list')
+   galleryRef.addEventListener('click', openModal);
 }
 
 // пагінація 2-ї та наспупних сторінок при рендері по пошуку
@@ -64,7 +70,11 @@ async function makeSearchMarkupOnLoadMore(e) {
   const films = await searchKeyword(searchText, currentPage);
   const markup = await renderFilmsSearchKeyword(films);
   wraper.innerHTML = markup;
+
+    const galleryRef = document.querySelector('.film_list')
+   galleryRef.addEventListener('click', openModal);
 }
+
 
 // функція гернерує 2 і наступні сторінки
 export async function renderFilmsOnLoadMore() {
@@ -72,4 +82,10 @@ export async function renderFilmsOnLoadMore() {
   const films = await fetchFilms(currentPage);
   const markup = await renderFilms(films);
   wraper.innerHTML = markup;
+
+   const galleryRef = document.querySelector('.film_list')
+   galleryRef.addEventListener('click', openModal);
 }
+
+
+
