@@ -33,7 +33,7 @@ export default async function openModal(e) {
               };
           }
           }
-          
+
           if(filterQueue !== null){
             for (let i = 0; i < filterQueue.length; i+=1){
               if (filterQueue[i].id === Number(e.target.dataset.id)) {
@@ -41,7 +41,7 @@ export default async function openModal(e) {
               };
             }
           }
-        
+
 
       // instance.element().querySelector('.js-overlay-modal').onclick = backdrop
 
@@ -50,11 +50,11 @@ export default async function openModal(e) {
 
     function addToLocalStorage(event) {
       const idCard = modal.firstElementChild.dataset.action;
-          
+
           console.log(event.target.textContent)
           if(event.target.id === 'watchedInModal'){
             if (event.target.textContent === 'DELETE OF WATCHED'){
-            
+
               for (let i = 0; i < filterWatched.length; i+=1){
                 if (filterWatched[i].id === Number(e.target.dataset.id)) {
                   console.log(i);
@@ -62,16 +62,16 @@ export default async function openModal(e) {
                   localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
                   btnW.textContent= "ADD TO WATCHED";
                 };
-            
+
             }
           } else{
             btnW.textContent = "DELETE OF WATCHED"
             watchedFilmsArray.push(data)
             localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
           }
-             
-          
-            } 
+
+
+            }
           else if(event.target.id === 'queueInModal'){
             if (event.target.textContent === 'DELETE OF QUEUE'){
               console.log(filterQueue)
@@ -85,13 +85,13 @@ export default async function openModal(e) {
                   };
               }
               }
-         
+
             } else {
               btnQ.textContent = "DELETE OF QUEUE"
               queueFilmsArray.push(data)
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
             }
-            
+
           }
         }
 //-----------

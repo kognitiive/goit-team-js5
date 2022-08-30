@@ -22,11 +22,9 @@ const wraper = document.querySelector('.div');
 //Перший рендер
 async function makeFirstMarkup(currentPage) {
   const films = await fetchFilms(currentPage);
-  console.log(films)
   paginat.options.totalItems = films.total_results;
   paginat.options.totalPages = films.total_pages;
   const markup = await renderFilms(films);
-  console.log(markup);
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(renderFilmsOnLoadMore);
 }
