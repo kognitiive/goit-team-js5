@@ -12,47 +12,60 @@ import noPicture from './images/nopicture.jpg';
 
 const btnWatched = document.querySelector("#watched")
 const btnQueue = document.querySelector("#queue")
-const wraper = document.querySelector('.div');
+const wraper = document.querySelector('.film_library_list');
+const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
+const dateRelise = new Date()
+
+if (filterWatched === null && filterQueue === null){
+  wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+} else {
+  wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
+  wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
+  const galleryRef = document.querySelector('.film_list');
+ 
+  galleryRef.addEventListener('click', openModal);
+}
+btnWatched.addEventListener('click', makeRenderFromWatched);
+btnQueue.addEventListener('click', makeRenderFromQueue);
+
+
 
 const backdrop = document.querySelector('.js-overlay-modal');
 
 let currentPage = 1;
-
-  wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
-
+ 
  function markUpMovies(movies) {
-   return movies.map(({id, poster_path, title, newGenres,year}) => {
-     return `<ul class="film_list list">
+   return movies.map(({id, poster_path, title, genres, release_date}) => {
+     return `
      <li class="film_item list" data-action='${id}'>
         <a class="film-link link js-open-modal" data-modal="1">
             <img src=https://image.tmdb.org/t/p/w500${poster_path} alt="${title}" class="film_image" data-id="${id}"/>
          </a>
          <h1 class="film_title">${title}</h1>
-         <p class="film_desc">${newGenres} | ${year}</p>
+         <p class="film_desc">${genres.map(genre => genre.name)} | ${dateRelise.getFullYear(release_date)}</p>
      </li>
- </ul>`;
+ `;
      })
          .join('');
  }
 
-btnWatched.addEventListener('click', makeRenderFromWatched);
-btnQueue.addEventListener('click', makeRenderFromQueue);
+
 
 function makeRenderFromWatched() {
-  const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
-  if (filterWatched != null) {
+  if (filterWatched !== null) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
-  }
-  else {
-    wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
-  }
   const galleryRef = document.querySelector('.film_list');
   galleryRef.addEventListener('click', openModal);
 }
+  else {
+    wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+  }
+
+}
 
 function makeRenderFromQueue() {
-const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
 if (filterQueue != null) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
