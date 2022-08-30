@@ -32,10 +32,8 @@ const instance = basicLightbox.create(document.querySelector('#template-registr'
 function openModal(e) {
     e.preventDefault()
     instance.show()
+    const registrationForm = document.querySelector('.regist-form')
 
-    registrationForm = document.querySelector('.regist-form')
-
-    console.log(registrationForm.elements.email)
     registrationForm.addEventListener('submit', createUser)
     function createUser (event){
         event.preventDefault();
@@ -52,6 +50,7 @@ function openModal(e) {
             'COOL',
             );
         registrationForm.reset()
+        instance.close()
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -62,6 +61,7 @@ function openModal(e) {
                 'There is already a user with this email!',
                 'Okay',
                 );
+                instance.close()
         } else {
             Notiflix.Notify.warning(errorMessage);
         }
