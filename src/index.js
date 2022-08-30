@@ -9,15 +9,13 @@ import openModal from './js/modal.js';
 import { searchKeyword } from "./js/apiSearchKeyword";
 import { renderFilmsSearchKeyword } from './js/renderFilmsSearchKeyword';
 import modalGoIT from './js/modal-go-it';
+
 import { paginat } from './js/pagination';
 import './js/top-button';
 import formRegistration from './js/formRegistration';
 
 //Змінні для пагінації
 let currentPage = 1;
-
-
-// //Перший рендер
 
 const wraper = document.querySelector('.div');
 

@@ -6,7 +6,6 @@ import axios from 'axios';
 
     const films = await axios.get(url)
     return films.data;
-    
 }
 
 
