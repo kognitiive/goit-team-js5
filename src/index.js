@@ -16,6 +16,7 @@ import formRegistration from './js/formRegistration';
 
 //Змінні для пагінації
 let currentPage = 1;
+let searchText = '';
 
 const wraper = document.querySelector('.div');
 
@@ -32,15 +33,11 @@ async function makeFirstMarkup(currentPage) {
     galleryRef.addEventListener('click', openModal);
 }
 makeFirstMarkup(currentPage);
-//   .then(r => {
-//    const galleryRef = document.querySelector('.film_list')
-//    galleryRef.addEventListener('click', openModal);
-//  });
 
 //Рендер при пошуку
 const input = document.querySelector('#search-box')
 input.addEventListener('input', debounce(makeSearchMarkup, 1000))
-let searchText = ' ';
+
 async function makeSearchMarkup(e) {
   e.preventDefault()
 
@@ -87,5 +84,13 @@ export async function renderFilmsOnLoadMore() {
    galleryRef.addEventListener('click', openModal);
 }
 
+
+// Зняття активних addEventListener
+const link = document.querySelector('#library')
+library.addEventListener('click', (e) => { 
+  galleryRef.RemoveEventListener('click', openModal);
+  input.RemoveEventListener('input', debounce(makeSearchMarkup, 1000))
+  openLink.RemoveEventListener('click', openModal)
+})
 
 

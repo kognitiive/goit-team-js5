@@ -1,15 +1,13 @@
-import Notiflix from 'notiflix';
-import fetchFilms from './js/fetchFilms';
-import { getUser } from './js/getUser';
-import renderFilms from './js/renderFilms';
-import openModal  from './js/modal';
-import fetchFilms from './js/fetchFilms';
+import * as basicLightBox from 'basiclightbox';
+
+import modalGoIT from './js/modal-go-it';
+import openModal from './js/modal';
 import { paginat } from './js/pagination';
 import templateFunction from './templates/card.hbs';
-import { filter } from 'lodash';
 import noPicture from './images/nopicture.jpg';
 import './js/top-button';
 
+let galleryRef = document.querySelector('.film_list');
 const btnWatched = document.querySelector("#watched")
 const btnQueue = document.querySelector("#queue")
 const wraper = document.querySelector('.film_library_list');
@@ -19,16 +17,16 @@ const dateRelise = new Date()
 
 btnWatched.addEventListener('click', makeRenderFromWatched);
 btnQueue.addEventListener('click', makeRenderFromQueue);
-if (filterWatched === null || filterQueue === null || filterWatched.length === 0){
+if ((filterWatched === null || filterWatched.length === 0) && (filterQueue === null || filterQueue.length === 0)) {
   wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
-} else {
-  makeRenderFromWatched()
-}
+} else if (filterWatched === null) {
+  makeRenderFromQueue()
+} else {makeRenderFromWatched()}
 
 
 
 
-const backdrop = document.querySelector('.js-overlay-modal');
+// const backdrop = document.querySelector('.js-overlay-modal');
 
 let currentPage = 1;
  
@@ -53,7 +51,7 @@ function makeRenderFromWatched() {
   if (filterWatched !== null && filterWatched.length !== 0) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
-  const galleryRef = document.querySelector('.film_list');
+  // galleryRef = document.querySelector('.film_list');
   galleryRef.addEventListener('click', openModal);
   btnWatched.classList.add('button__header-active')
   btnWatched.disabled = true;
@@ -75,6 +73,8 @@ function makeRenderFromQueue() {
 if (filterQueue !== null && filterQueue.length !== 0) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
+  // galleryRef = document.querySelector('.film_list')
+  galleryRef.addEventListener('click', openModal);
   btnQueue.classList.add('button__header-active')
   btnQueue.disabled = true;
   btnWatched.classList.remove('button__header-active')
@@ -87,7 +87,5 @@ if (filterQueue !== null && filterQueue.length !== 0) {
     btnWatched.classList.remove('button__header-active')
     btnWatched.disabled = false;
   }
-  const galleryRef = document.querySelector('.film_list')
-  galleryRef.addEventListener('click', openModal);
 }
 
