@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import Notiflix from 'notiflix';
-import { onLoadMore, renderFilms } from '../index';
+import {renderFilms } from '../index';
 import { renderFilmsOnLoadMore } from '../index';
 Notiflix.Loading.init({ svgColor: '#FF6B08' });
 
@@ -79,7 +79,7 @@ export const paginat = {
       this.contain.classList.remove('is-hidden');
     }
     hidefirstAndLastPages(1, this.options.totalPages);
-    Notiflix.Loading.dots('Loading...'); 
+    Notiflix.Loading.dots('Loading...');
     Notiflix.Loading.remove(350);
     pagination.on('afterMove', event => {
       Notiflix.Loading.dots('Loading...');
