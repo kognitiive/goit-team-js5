@@ -4,7 +4,6 @@ import { getUser } from './js/getUser';
 import renderFilms from './js/renderFilms';
 import openModal  from './js/modal';
 import fetchFilms from './js/fetchFilms';
-
 import { paginat } from './js/pagination';
 import templateFunction from './templates/card.hbs';
 import { filter } from 'lodash';
@@ -17,20 +16,14 @@ const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
 const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
 const dateRelise = new Date()
 
-
-if (filterWatched === null && filterQueue === null){
-  wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
-} else {
-  wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
-  btnWatched.classList.add('button__header-active')
-  btnWatched.disabled = true;
-  
-  const galleryRef = document.querySelector('.film_list');
- 
-  galleryRef.addEventListener('click', openModal);
-}
 btnWatched.addEventListener('click', makeRenderFromWatched);
 btnQueue.addEventListener('click', makeRenderFromQueue);
+if (filterWatched === null || filterQueue === null || filterWatched.length === 0){
+  wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+} else {
+  makeRenderFromWatched()
+}
+
 
 
 
@@ -56,7 +49,7 @@ let currentPage = 1;
 
 
 function makeRenderFromWatched() {
-  if (filterWatched !== null) {
+  if (filterWatched !== null && filterWatched.length !== 0) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
   const galleryRef = document.querySelector('.film_list');
@@ -67,22 +60,31 @@ function makeRenderFromWatched() {
   btnQueue.disabled = false;
 }
   else {
+  
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+    btnWatched.classList.add('button__header-active')
+    btnWatched.disabled = true;
+    btnQueue.classList.remove('button__header-active')
+    btnQueue.disabled = false;
   }
 
 }
 
 function makeRenderFromQueue() {
-if (filterQueue != null) {
+if (filterQueue !== null && filterQueue.length !== 0) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
-  btnWatched.classList.remove('button__header-active')
-  btnWatched.disabled = false;
   btnQueue.classList.add('button__header-active')
   btnQueue.disabled = true;
+  btnWatched.classList.remove('button__header-active')
+  btnWatched.disabled = false;
   }
   else {
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+    btnQueue.classList.add('button__header-active')
+    btnQueue.disabled = true;
+    btnWatched.classList.remove('button__header-active')
+    btnWatched.disabled = false;
   }
   const galleryRef = document.querySelector('.film_list')
   galleryRef.addEventListener('click', openModal);
