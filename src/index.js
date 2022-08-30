@@ -51,7 +51,9 @@ async function makeSearchMarkup(e) {
   if (searchText.length < 3) {
     return Notiflix.Notify.info('Please enter at least 3 letters');
   }
-  const films = await searchKeyword(searchText);
+  const films = await searchKeyword(searchText, 1);
+  paginat.options.totalItems = films.total_results;
+  paginat.options.totalPages = films.total_pages;
   if (films.length === 0) {
     return Notiflix.Notify.info('Oops, there is no film with that name');
   }
