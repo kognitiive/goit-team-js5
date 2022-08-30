@@ -4,15 +4,16 @@ import { getUser } from './js/getUser';
 import renderFilms from './js/renderFilms';
 import openModal  from './js/modal';
 import fetchFilms from './js/fetchFilms';
+
 import { paginat } from './js/pagination';
 import templateFunction from './templates/card.hbs';
 import { filter } from 'lodash';
 import noPicture from './images/nopicture.jpg';
 
-
 const btnWatched = document.querySelector("#watched")
 const btnQueue = document.querySelector("#queue")
 const wraper = document.querySelector('.div');
+
 const backdrop = document.querySelector('.js-overlay-modal');
 
 let currentPage = 1;
