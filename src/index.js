@@ -56,6 +56,8 @@ async function makeSearchMarkup(e) {
     return Notiflix.Notify.info('Oops, there is no film with that name');
   }
   const markup = await renderFilmsSearchKeyword(films)
+  paginat.options.totalItems = films.total_results;
+  paginat.options.totalPages = films.total_pages;
   wraper.innerHTML = '';
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(makeSearchMarkupOnLoadMore);
@@ -69,6 +71,8 @@ async function makeSearchMarkupOnLoadMore(e) {
   currentPage = paginat.currentPage;
   const films = await searchKeyword(searchText, currentPage);
   const markup = await renderFilmsSearchKeyword(films);
+  paginat.options.totalItems = films.total_results;
+  paginat.options.totalPages = films.total_pages;
   wraper.innerHTML = markup;
 
     const galleryRef = document.querySelector('.film_list')
@@ -81,6 +85,8 @@ export async function renderFilmsOnLoadMore() {
   currentPage = paginat.currentPage;
   const films = await fetchFilms(currentPage);
   const markup = await renderFilms(films);
+  paginat.options.totalItems = films.total_results;
+  paginat.options.totalPages = films.total_pages;
   wraper.innerHTML = markup;
 
    const galleryRef = document.querySelector('.film_list')
