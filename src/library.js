@@ -21,13 +21,19 @@ const dateRelise = new Date()
 if (filterWatched === null && filterQueue === null){
   wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
 } else {
-  wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
-  btnWatched.classList.add('button__header-active')
-  btnWatched.disabled = true;
+  if (filterWatched !== null){
+    wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
+    btnWatched.classList.add('button__header-active')
+    btnWatched.disabled = true;
+    
+    const galleryRef = document.querySelector('.film_list');
+    galleryRef.addEventListener('click', openModal);
+  } else {
+    wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+    btnWatched.classList.add('button__header-active')
+    btnWatched.disabled = true;
+  }
   
-  const galleryRef = document.querySelector('.film_list');
- 
-  galleryRef.addEventListener('click', openModal);
 }
 btnWatched.addEventListener('click', makeRenderFromWatched);
 btnQueue.addEventListener('click', makeRenderFromQueue);
@@ -68,6 +74,10 @@ function makeRenderFromWatched() {
 }
   else {
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+    btnWatched.classList.add('button__header-active')
+    btnWatched.disabled = true;
+    btnQueue.classList.remove('button__header-active')
+    btnQueue.disabled = false;
   }
 
 }
@@ -76,13 +86,17 @@ function makeRenderFromQueue() {
 if (filterQueue != null) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
-  btnWatched.classList.remove('button__header-active')
-  btnWatched.disabled = false;
   btnQueue.classList.add('button__header-active')
   btnQueue.disabled = true;
+  btnWatched.classList.remove('button__header-active')
+  btnWatched.disabled = false;
   }
   else {
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
+    btnQueue.classList.add('button__header-active')
+    btnQueue.disabled = true;
+    btnWatched.classList.remove('button__header-active')
+    btnWatched.disabled = false;
   }
   const galleryRef = document.querySelector('.film_list')
   galleryRef.addEventListener('click', openModal);
