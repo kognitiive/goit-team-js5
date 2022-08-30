@@ -173,9 +173,10 @@
     margin-left: auto;
     margin-right: auto;
     border-bottom: 0.5px solid $first-color;
+    margin-top: 56px;
+    width: 90%;
 
-    @media screen and (max-width: 767px) {
-        margin-top: 56px;
+    @media screen and (min-width: 320px) {
         width: 280px;
     }
 
