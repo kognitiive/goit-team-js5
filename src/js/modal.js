@@ -24,12 +24,13 @@ export default async function openModal(e) {
     {
       onShow: (instance) => {
 
-         const filter = JSON.parse(localStorage.getItem('watchedFilmsArray'));
-   for (let i = 0; i < filter.length; i++){
-     if (filter[i].id === Number(e.target.dataset.id)) {
-       btnW.textContent= "DELETE OF WATCHED";
-     }
-       };
+  //       const filter = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+  //       if (!filter) return;
+  //  for (let i = 0; i < filter.length; i++){
+  //    if (filter[i].id === Number(e.target.dataset.id)) {
+  //      btnW.textContent= "DELETE OF WATCHED";
+  //    }
+  //      };
 
           const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
           const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
