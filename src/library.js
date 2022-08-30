@@ -17,11 +17,14 @@ const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
 const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
 const dateRelise = new Date()
 
+
 if (filterWatched === null && filterQueue === null){
   wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
 } else {
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
-  wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
+  btnWatched.classList.add('button__header-active')
+  btnWatched.disabled = true;
+  
   const galleryRef = document.querySelector('.film_list');
  
   galleryRef.addEventListener('click', openModal);
@@ -58,6 +61,10 @@ function makeRenderFromWatched() {
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterWatched));
   const galleryRef = document.querySelector('.film_list');
   galleryRef.addEventListener('click', openModal);
+  btnWatched.classList.add('button__header-active')
+  btnWatched.disabled = true;
+  btnQueue.classList.remove('button__header-active')
+  btnQueue.disabled = false;
 }
   else {
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
@@ -69,6 +76,10 @@ function makeRenderFromQueue() {
 if (filterQueue != null) {
   wraper.innerHTML = ' ';
   wraper.insertAdjacentHTML('beforeend', markUpMovies(filterQueue));
+  btnWatched.classList.remove('button__header-active')
+  btnWatched.disabled = false;
+  btnQueue.classList.add('button__header-active')
+  btnQueue.disabled = true;
   }
   else {
     wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
