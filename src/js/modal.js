@@ -3,8 +3,11 @@ import makeMarkupModal from './makeMarkupModal';
 import * as basicLightBox from 'basiclightbox';
 
 //-------- Масиви для локал сторидж ----
-const watchedFilmsArray = [];
-const queueFilmsArray = [];
+
+const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
+const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
+const watchedFilmsArray = filterWatched === null ? [] : filterWatched;
+const queueFilmsArray = filterQueue === null ? [] : filterQueue;
 //---------
 
 export default async function openModal(e) {
@@ -22,9 +25,6 @@ export default async function openModal(e) {
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
       onShow: (instance) => {
-
-          const filterWatched = JSON.parse(localStorage.getItem('watchedFilmsArray'));
-          const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
 
           if(filterWatched !== null){
             for (let i = 0; i < filterWatched.length; i+=1){
@@ -46,9 +46,9 @@ export default async function openModal(e) {
     modal.addEventListener('click', addToLocalStorage)
 
     function addToLocalStorage(event) {
-      const idCard = modal.firstElementChild.dataset.action;
 
           if(event.target.id === 'watchedInModal'){
+
             if (event.target.textContent === 'DELETE OF WATCHED'){
 
               for (let i = 0; i < filterWatched.length; i+=1){
@@ -64,12 +64,11 @@ export default async function openModal(e) {
             watchedFilmsArray.push(data)
             localStorage.setItem("watchedFilmsArray", JSON.stringify(watchedFilmsArray))
           }
-
-
             }
-          else if(event.target.id === 'queueInModal'){
+
+           if(event.target.id === 'queueInModal'){
             if (event.target.textContent === 'DELETE OF QUEUE'){
-              if(filterQueue !== null){
+              
                 for (let i = 0; i < filterQueue.length; i+=1){
                   if (filterQueue[i].id === Number(e.target.dataset.id)) {
                     queueFilmsArray.splice(i, 1)
@@ -77,14 +76,11 @@ export default async function openModal(e) {
                     btnQ.textContent= "ADD TO QUEUE";
                   };
               }
-              }
-
             } else {
               btnQ.textContent = "DELETE OF QUEUE"
               queueFilmsArray.push(data)
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
             }
-
           }
         }
 //-----------
