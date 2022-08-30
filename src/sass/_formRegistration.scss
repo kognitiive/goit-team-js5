@@ -12,7 +12,8 @@
     z-index: 0;
     visibility: hidden;
 
-    background-color: white;
+    background-image: url(../images/header/home/desk-bg@1x.webp);
+    color: #fff;
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
 
     @media screen and (min-width: 768px) {
@@ -80,8 +81,9 @@
     height: 25px;
     background-color: transparent;
     border-radius: 4px;
-    border: 1px solid black;
+    border: 1px solid #fff;
     cursor: pointer;
+    color: #fff;
 
     &:hover,
     &:focus {
