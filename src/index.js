@@ -28,8 +28,8 @@ async function makeFirstMarkup(currentPage) {
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(renderFilmsOnLoadMore);
 
-    const galleryRef = document.querySelector('.film_list')
-   galleryRef.addEventListener('click', openModal);
+     const galleryRef = document.querySelector('.film_list')
+    galleryRef.addEventListener('click', openModal);
 }
 makeFirstMarkup(currentPage);
 //   .then(r => {
@@ -40,11 +40,11 @@ makeFirstMarkup(currentPage);
 //Рендер при пошуку
 const input = document.querySelector('#search-box')
 input.addEventListener('input', debounce(makeSearchMarkup, 1000))
-let searchText = '';
+let searchText = ' ';
 async function makeSearchMarkup(e) {
   e.preventDefault()
 
-  const searchText = e.target.value.trim()
+  searchText = e.target.value.trim()
   if (!searchText) {
     return
   }
@@ -62,21 +62,20 @@ async function makeSearchMarkup(e) {
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(makeSearchMarkupOnLoadMore);
 
-    const galleryRef = document.querySelector('.film_list')
-   galleryRef.addEventListener('click', openModal);
+   const galleryRef = document.querySelector('.film_list')
+    galleryRef.addEventListener('click', openModal);
 }
 
 // пагінація 2-ї та наспупних сторінок при рендері по пошуку
-async function makeSearchMarkupOnLoadMore(e) {
+export async function makeSearchMarkupOnLoadMore(e) {
   currentPage = paginat.currentPage;
   const films = await searchKeyword(searchText, currentPage);
   const markup = await renderFilmsSearchKeyword(films);
   wraper.innerHTML = markup;
 
-    const galleryRef = document.querySelector('.film_list')
+   const galleryRef = document.querySelector('.film_list')
    galleryRef.addEventListener('click', openModal);
 }
-
 
 // функція гернерує 2 і наступні сторінки
 export async function renderFilmsOnLoadMore() {
@@ -84,8 +83,7 @@ export async function renderFilmsOnLoadMore() {
   const films = await fetchFilms(currentPage);
   const markup = await renderFilms(films);
   wraper.innerHTML = markup;
-
-   const galleryRef = document.querySelector('.film_list')
+    const galleryRef = document.querySelector('.film_list')
    galleryRef.addEventListener('click', openModal);
 }
 
