@@ -1,28 +1,27 @@
 li {
   list-style: none;
 }
- .overlay {
-   opacity: 0;
-   visibility: hidden;
+.overlay {
+  opacity: 0;
+  visibility: hidden;
 
-
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-   z-index: 20;
+  z-index: 20;
   transition: 0.3s all;
-   @media screen and (min-width: 768px) {
-     overflow: scroll;
-   }
- }
+  @media screen and (min-width: 768px) {
+    overflow: scroll;
+  }
+}
 
 .modal {
-  position: absolute;
-   top: 50%;
-   left: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
 
