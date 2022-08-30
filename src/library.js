@@ -8,6 +8,7 @@ import { paginat } from './js/pagination';
 import templateFunction from './templates/card.hbs';
 import { filter } from 'lodash';
 import noPicture from './images/nopicture.jpg';
+import './js/top-button';
 
 const btnWatched = document.querySelector("#watched")
 const btnQueue = document.querySelector("#queue")
