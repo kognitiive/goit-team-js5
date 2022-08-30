@@ -19,7 +19,7 @@ btnWatched.addEventListener('click', makeRenderFromWatched);
 btnQueue.addEventListener('click', makeRenderFromQueue);
 if ((filterWatched === null || filterWatched.length === 0) && (filterQueue === null || filterQueue.length === 0)) {
   wraper.innerHTML = `<img src="${noPicture}" alt="Frai speaking" />`;
-} else if (filterWatched === null) {
+} else if (filterWatched === null || filterWatched.length === 0) {
   makeRenderFromQueue()
 } else {makeRenderFromWatched()}
 
