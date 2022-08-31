@@ -1,6 +1,7 @@
 import modalCard from '../templates/modal.hbs';
 import makeMarkupModal from './makeMarkupModal';
 import * as basicLightBox from 'basiclightbox';
+import { trailer } from './/trailer';
 
 //-------- Масиви для локал сторидж ----
 
@@ -9,19 +10,22 @@ const filterQueue = JSON.parse(localStorage.getItem('queueFilmsArray'));
 const watchedFilmsArray = filterWatched === null ? [] : filterWatched;
 const queueFilmsArray = filterQueue === null ? [] : filterQueue;
 //---------
+export let eTargetDatasetId = null;
 
 export default async function openModal(e) {
   e.preventDefault();
   const backdrop = document.querySelector('.js-overlay-modal')
-
+  eTargetDatasetId = e.target.dataset.id;
   const data = await makeMarkupModal(e.target.dataset.id)
   const markup = modalCard(data);
   backdrop.innerHTML = ''
+
   backdrop.insertAdjacentHTML('beforeend', markup)
   const btnW = document.querySelector('#watchedInModal')
   const btnQ = document.querySelector('#queueInModal')
   const modalBtnClose = document.querySelector('.js-modal-close');
-  const modal = document.querySelector('.modal')
+  const modal = document.querySelector('.modal');
+  const btnModalTrailer = document.querySelector('.button-trailer');
   const instance = basicLightBox.create(document.querySelector('#modal-window'),
     {
       onShow: (instance) => {
@@ -44,7 +48,7 @@ export default async function openModal(e) {
 
 // -------- Код додавання обраних фільмів в локал сторидж ------
     modal.addEventListener('click', addToLocalStorage)
-
+        
     function addToLocalStorage(event) {
 
           if(event.target.id === 'watchedInModal'){
@@ -82,34 +86,43 @@ export default async function openModal(e) {
               localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
             }
           }
+          
+        } else {
+          btnQ.textContent = "DELETE OF QUEUE"
+          queueFilmsArray.push(data)
+          localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
         }
-//-----------
-        backdrop.classList.add('active')
-        modal.classList.add('active')
-
-      window.addEventListener('keydown', onEscapeButtonClick);
-      backdrop.addEventListener('click', onBackDropClick);
-      modalBtnClose.addEventListener('click', onModalBtnClose)
-    },
-    onClose:  (instance) => {
-      window.removeEventListener('keydown', onEscapeButtonClick);
-      backdrop.removeEventListener('click', onBackDropClick);
-      modalBtnClose.removeEventListener('click', onModalBtnClose);
+        
       }
-    });
+    }
+    //-----------
+    backdrop.classList.add('active')
+    modal.classList.add('active')
+    
+    window.addEventListener('keydown', onEscapeButtonClick);
+    backdrop.addEventListener('click', onBackDropClick);
+    modalBtnClose.addEventListener('click', onModalBtnClose)
+  },
+  onClose:  (instance) => {
+    window.removeEventListener('keydown', onEscapeButtonClick);
+    backdrop.removeEventListener('click', onBackDropClick);
+    modalBtnClose.removeEventListener('click', onModalBtnClose);
+  }
+});
+btnModalTrailer.addEventListener('click', trailer);//====================
   function onEscapeButtonClick(e) {
-  if (e.code === 'Escape') {
+    if (e.code === 'Escape') {
+      backdrop.classList.remove('active');
+      modal.classList.remove('active')
+      instance.close();
+    }
+  }
+  function onBackDropClick(e) {
     backdrop.classList.remove('active');
     modal.classList.remove('active')
-          instance.close();
-        }
-}
-function onBackDropClick(e) {
-  backdrop.classList.remove('active');
-  modal.classList.remove('active')
-  instance.close();
-}
-function onModalBtnClose(e) {
+    instance.close();
+  }
+  function onModalBtnClose(e) {
   backdrop.classList.remove('active');
   modal.classList.remove('active')
   instance.close();
