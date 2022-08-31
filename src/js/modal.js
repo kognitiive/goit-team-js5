@@ -16,6 +16,7 @@ export default async function openModal(e) {
   e.preventDefault();
   const backdrop = document.querySelector('.js-overlay-modal')
   eTargetDatasetId = e.target.dataset.id;
+  if (!eTargetDatasetId) { return }
   const data = await makeMarkupModal(e.target.dataset.id)
   const markup = modalCard(data);
   backdrop.innerHTML = ''

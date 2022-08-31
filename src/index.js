@@ -29,7 +29,7 @@ async function makeFirstMarkup(currentPage) {
   wraper.insertAdjacentHTML('beforeend', markup);
   paginat.pagMake(renderFilmsOnLoadMore);
 
-     const galleryRef = document.querySelector('.film_list')
+    const galleryRef = document.querySelector('.film_list')
     galleryRef.addEventListener('click', openModal);
 }
 makeFirstMarkup(currentPage);
