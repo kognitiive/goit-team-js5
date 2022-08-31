@@ -1,6 +1,6 @@
 const basicLightbox = require('basiclightbox');
+const openLink = document.querySelector('.footer__link')
 const refs = {
-    openLink: document.querySelector('.footer__link'),
     closeBtn: document.querySelector('.window-btn'),
     backdrop: document.querySelector('.window-backdrop'),
     modal: document.querySelector('.window')
@@ -13,7 +13,7 @@ const instance = basicLightbox.create(
             window.addEventListener('keydown', onEscCode)
             refs.modal.classList.add('active')
             refs.backdrop.classList.add('active')
-            instance.element().querySelector('.window-btn').onclick = instance.close
+            refs.closeBtn.addEventListener('click', onBtnClose)
             refs.backdrop.addEventListener('click', onBackdropClose)
         },
 
@@ -21,23 +21,28 @@ const instance = basicLightbox.create(
             refs.modal.classList.remove('active')
             refs.backdrop.classList.remove('active')
             window.removeEventListener('keydown', onEscCode)
+            refs.closeBtn.removeEventListener('click', onBtnClose)
             refs.backdrop.removeEventListener('click', onBackdropClose)
         }
     }
 )
-refs.openLink.addEventListener('click', openModal)
+openLink.addEventListener('click', openModal)
 function openModal(e) {
     e.preventDefault()
     return instance.show()
 }
 function onEscCode(event) {
     if (event.code === "Escape") {
-        instance.close()
-        return
+      return instance.close()
+        
     }
 }
 function onBackdropClose(e) {
     if (e.currentTarget === e.target) {
-        instance.close()
+      return instance.close()
     }
+}
+
+function onBtnClose(e) {
+    return instance.close()
 }
