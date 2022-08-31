@@ -87,14 +87,7 @@ export default async function openModal(e) {
             }
           }
           
-        } else {
-          btnQ.textContent = "DELETE OF QUEUE"
-          queueFilmsArray.push(data)
-          localStorage.setItem("queueFilmsArray", JSON.stringify(queueFilmsArray))
         }
-        
-      }
-    }
     //-----------
     backdrop.classList.add('active')
     modal.classList.add('active')
