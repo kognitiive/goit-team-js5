@@ -6,10 +6,10 @@
   <div>
     <button data-modal-close class="js-modal-close button-modal--close">
         <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-          
+
           <path id="Vector 1" d="M8 8L22 22" stroke="black" stroke-width="2"/>
           <path id="Vector 2" d="M8 22L22 8" stroke="black" stroke-width="2"/>
-          
+
       </svg>
        {{!-- <svg class="close__svg" width="15" height="15">
         <use href="../images/symbol-defs.svg#close"></use>
@@ -17,7 +17,7 @@
   </div>
 <div class="thumb">
 
-  <img class='modal__image' src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" data-id="{{id}}" />
+  <img class='modal__image' src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" data-id="{{id}}" loading="lazy" />
 </div>
 <div class="content__text">
   <h2 class='modal__title'>{{title}}</h2>
@@ -52,7 +52,7 @@
 
 
 
-   
+
   <ul class='list-buttons'>
     <li>
       <button type='submit' class='button-modal button-modal--orange' id='watchedInModal'>add to Watched</button>
